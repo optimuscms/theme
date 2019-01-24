@@ -1,9 +1,11 @@
 // Import plugins
 import Icons from './lib/icons';
 import NProgress from 'nprogress';
-import { mapMutations } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 
-// Import navigation store
+// Import vuex modules
+import alertStore from './store/modules/alert';
+import confirmationStore from './store/modules/confirmation';
 import dashboardStore from './store/modules/dashboard';
 
 // Import components
@@ -34,6 +36,8 @@ import ThSort from './components/ui/ThSort';
 
 export default function install(Vue, options = {}) {
     if (options.hasOwnProperty('store')) {
+        options.store.registerModule('alert', alertStore);
+        options.store.registerModule('confirmation', confirmationStore);
         options.store.registerModule('dashboard', dashboardStore);
     }
 
@@ -50,9 +54,16 @@ export default function install(Vue, options = {}) {
 
     // Mixins
     Vue.mixin({
-        methods: mapMutations({
-            setTitle: 'dashboard/setTitle'
-        })
+        methods: {
+            ...mapActions({
+                openConfirmation: 'confirmation/open'
+            }),
+            
+            ...mapMutations({
+                openAlert: 'alert/open',
+                setTitle: 'dashboard/setTitle'
+            })
+        }
     });
 
     // Register components

@@ -46,16 +46,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-    #nprogress {
-        .bar {
-            background: config('colors.primary');
-        }
-
-        .peg {
-            box-shadow: 0 0 10px config('colors.primary'),
-                        0 0 5px config('colors.primary');
-        }
-    }
-</style>

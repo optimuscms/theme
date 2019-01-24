@@ -1,5 +1,5 @@
 <template>
-    <o-modal :active="isActive" @close="close">
+    <o-modal :active="isOpen" @close="confirm">
         <div class="modal-content bg-white rounded max-w-sm">
             <div class="content px-6 pt-8 text-center">
                 <slot></slot>
@@ -7,8 +7,9 @@
 
             <div class="p-6 text-center">
                 <a
-                    class="button button-green w-full sm:w-1/2"
-                    @click="close"
+                    class="button w-full sm:w-1/2"
+                    :class="buttonClass"
+                    @click="confirm"
                 >{{ buttonText }}</a>
             </div>
         </div>
@@ -16,28 +17,41 @@
 </template>
 
 <script>
+    import { mapGetters, mapMutations } from 'vuex';
+
     export default {
         props: {
+            id: {
+                type: String,
+                default: null
+            },
+            
             buttonText: {
                 type: String,
                 default: 'Ok'
+            },
+
+            buttonClass: {
+                type: String,
+                default: 'button-green'
             }
         },
 
-        data() {
-            return {
-                isActive: false
-            }
+        computed: {
+            ...mapGetters({
+                isOpen: 'alert/isOpen'
+            })
         },
 
         methods: {
-            open() {
-                this.isActive = true;
-            },
+            ...mapMutations({
+                open: 'alert/open',
+                close: 'alert/close'
+            }),
 
-            close() {
+            confirm() {
                 this.$emit('close');
-                this.isActive = false;
+                this.close();
             }
         }
     }

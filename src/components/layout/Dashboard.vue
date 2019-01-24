@@ -1,8 +1,8 @@
 <template>
     <transition-group
         tag="div"
-        name="dashboard"
         mode="out-in"
+        name="dashboard"
         class="min-h-screen bg-grey-lightest"
     >
         <div
@@ -38,8 +38,7 @@
                     </a>
 
                     <side-header
-                        :authed-user="authedUser"
-                        :placeholder-image="placeholderImage"
+                        :placeholder-image="userPlaceholderImage"
                     ></side-header>
 
                     <div class="side-content px-10 py-8">
@@ -56,7 +55,7 @@
                         <slot name="header"></slot>
                     </main-header>
 
-                    <loader :loading="loading">
+                    <loader :loading="loadingRoute">
                         <router-view></router-view>
                     </loader>
                 </div>
@@ -84,25 +83,17 @@
         },
 
         props: {
-            authedUser: {
-                type: Object,
-                required: true
-            },
-
             loadingApp: {
                 type: Boolean,
                 default: false
             },
 
-            loading: {
+            loadingRoute: {
                 type: Boolean,
                 default: false
             },
             
-            placeholderImage: {
-                type: String,
-                required: true
-            }
+            userPlaceholderImage: String
         },
 
         computed: {
@@ -118,140 +109,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    .dashboard {
-        display: flex;
-        min-height: 100vh;
-        position: relative;
-
-        &.show-side {
-            .side {
-                transform: translate3d(0, 0, 0);
-            }
-        }
-    }
-
-    .side {
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 85%;
-        z-index: 10;
-        display: flex;
-        max-width: 22rem;
-        position: absolute;
-        flex-direction: column;
-        transition: all 180ms 0ms ease-out;
-        transform: translate3d(calc(-100% + 1.5rem), 0, 0);
-
-        .side-header {
-            z-index: 20;
-            display: flex;
-            flex-shrink: 0;
-            position: relative;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .side-content {
-            flex-grow: 1;
-            overflow: scroll;
-            flex-direction: column;
-        }
-
-        @screen lg {
-            transform: translate3d(0, 0, 0);
-        }
-
-        .side-toggle {
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 10;
-            width: 1.5rem;
-            position: absolute;
-            box-shadow: 6px 0 6px 3px rgba(0, 0, 0, 0.2);
-    
-            .dots {
-                top: 50%;
-                left: 50%;
-                position: absolute;
-                transform: translate(-50%, -50%);
-    
-                i,
-                i:before,
-                i:after {
-                    width: 4px;
-                    height: 4px;
-                    display: block;
-                    border-radius: 4px;
-                    background-color: config('colors.blue-lighter');
-                }
-    
-                i {
-                    position: relative;
-    
-                    &:before,
-                    &:after {
-                        content: '';
-                        position: absolute;
-                    }
-    
-                    &:before {
-                        transform: translateY(-10px);
-                    }
-    
-                    &:after {
-                        transform: translateY(10px);
-                    }
-                }
-            }
-        }
-    }
-
-    .main {
-        flex-grow: 1;
-        transition: all 180ms 0ms ease-out;
-
-        @screen lg {
-            padding-left: 22rem;
-        }
-    }
-
-    .dashboard-enter-active,
-    .dashboard-leave-active {
-        transition: opacity 300ms;
-    }
-    
-    .dashboard-enter,
-    .dashboard-leave-to {
-        opacity: 0;
-    }
-
-    .side-enter-active,
-    .main-enter-active {
-        transition: all 500ms 300ms ease;
-    }
-
-    .side-enter {
-        opacity: 0;
-        transform: translateX(-10%);
-    }
-
-    .main-enter {
-        opacity: 0;
-        transform: translateY(-10%);
-    }
-
-    .pulse {
-        opacity: 0.6;
-        animation: pulse 3000ms ease-out infinite; 
-    }
-
-    @keyframes pulse {
-        0% { opacity: 0.6; }
-        50% { opacity: 1.0; }
-        100% { opacity: 0.6; }
-    }
-</style>

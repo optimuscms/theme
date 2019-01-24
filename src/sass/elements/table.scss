@@ -1,0 +1,52 @@
+.table {
+    thead,
+    tbody {
+        tr {
+            th,
+            td {
+                &.sort-handle {
+                    cursor: grab;
+                    text-align: center;
+                }
+    
+                &.actions {
+                    text-align: center;
+    
+                    a {
+                        color: config('colors.grey-light');
+                    }
+                }
+    
+            }
+    
+            &.draft {
+                th,
+                td {
+                    background-color: config('colors.grey-lighter');
+                }
+                
+                &:not(:hover) {
+                    th,
+                    td {
+                        color: config('colors.grey-dark');
+                    }
+                }
+            }
+    
+            &:hover {
+                th,
+                td {
+                    &.actions {
+                        a {
+                            color: config('colors.grey-darker');
+    
+                            &:hover {
+                                color: config('colors.primary');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

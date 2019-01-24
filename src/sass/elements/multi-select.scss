@@ -1,0 +1,110 @@
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
+
+.select.multiselect {
+    height: auto;
+    min-height: $control-height;
+
+    &:after {
+        box-sizing: border-box;
+        top: ($control-height / 2) + 0.15rem !important;
+    }
+}
+
+.multiselect {
+    color: $input-color;
+    font-size: $text-size;
+    min-height: $control-height;
+
+    .multiselect__select {
+        display: none;
+    }
+
+    .multiselect__tags {
+        min-height: $control-height;
+        padding: 0.5rem 4rem 0 0.75rem;
+        border-color: $input-border-color;
+        border-radius: $input-border-radius;
+        background-color: $input-background-color;
+
+        display: flex;
+        align-items: center;
+    
+        &:hover {
+            border-color: $input-hover-border-color;
+        }
+
+        .multiselect__tags-wrap {
+            flex-wrap: wrap;
+            display: inline-flex;
+
+            .multiselect__tag {
+                margin: 0 0.5rem 0.5rem 0;
+                color: config('colors.grey-darker');
+                background-color: config('colors.grey-light');
+
+                .multiselect__tag-icon {
+                    &:after {
+                        color: config('colors.grey-darker');
+                    }
+                }
+
+                &:hover {
+                    .multiselect__tag-icon {
+                        background-color: config('colors.grey-dark');
+
+                        &:after {
+                            color: config('colors.white');
+                        }
+                    }
+                }
+            }
+        }
+
+        .multiselect__input,
+        .multiselect__single {
+            margin: 0;
+            padding: 0 0 0.5rem;
+            color: $input-color;
+            font-size: $text-size;
+        }
+    }
+
+    .multiselect__content-wrapper {
+        border-color: $input-border-color;
+        background-color: $input-background-color;
+        border-radius: 0 0 $input-border-radius $input-border-radius;
+
+        .multiselect__option {
+            &:after {
+                background-color: transparent !important;
+            }
+
+            &.multiselect__option--highlight {
+                color: config('colors.black');
+                background-color: config('colors.grey-light');
+
+                &:after {
+                    color: config('colors.grey-darker');
+                }
+            }
+
+            &.multiselect__option--selected {
+                color: config('colors.grey-lightest');
+                background-color: config('colors.primary');
+
+                &:after {
+                    color: config('colors.grey-lightest');
+                }
+
+                &.multiselect__option--highlight {
+                    color: config('colors.white');
+                    background-color: config('colors.primary-dark');
+
+                    &:after {
+                        color: config('colors.white');
+                    }
+                }
+            }
+        }
+    }
+}

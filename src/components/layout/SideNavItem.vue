@@ -1,5 +1,5 @@
 <template>
-    <li :class="{ 'active': areaIsActive }">
+    <li :class="{ 'active': sectionIsActive }">
         <router-link :to="to" v-if="isRouterLink">
             <span>{{ label }}</span>
 
@@ -16,7 +16,7 @@
             </span>
         </a>
 
-        <ul class="side-sub-nav list-reset" v-if="hasSubNav && subNavIsVisible">
+        <ul v-if="hasSubNav && subNavIsVisible" class="side-sub-nav list-reset">
             <slot></slot>
         </ul>
     </li>
@@ -30,7 +30,7 @@
                 default: null
             },
 
-            area: String,
+            section: String,
 
             label: {
                 type: String,
@@ -45,16 +45,16 @@
         },
 
         computed: {
-            currentArea() {
+            currentSection() {
                 let meta = this.$route.matched[this.$route.matched.length - 1].meta;
 
-                return meta.hasOwnProperty('area')
-                    ? meta.area
-                    : this.$route.matched[0].meta.area;
+                return meta.hasOwnProperty('section')
+                    ? meta.section
+                    : this.$route.matched[0].meta.section;
             },
 
-            areaIsActive() {
-                return this.area === this.currentArea;
+            sectionIsActive() {
+                return this.section === this.currentSection;
             },
 
             isRouterLink() {
@@ -75,14 +75,14 @@
         },
 
         created() {
-            if (this.currentArea === this.area) {
+            if (this.currentSection === this.section) {
                 this.subNavIsVisible = true;
             }
         },
 
         watch: {
-            currentArea(area) {
-                if (area === this.area) {
+            currentSection(section) {
+                if (section === this.section) {
                     this.subNavIsVisible = true;
                 } else {
                     this.subNavIsVisible = false;
