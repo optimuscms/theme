@@ -61,8 +61,10 @@ let colors = {
 
   'white': '#ffffff',
 
+  'red-dark': '#ce2924',
   'red': '#e3342f',
 
+  'green-dark': '#29a85e',
   'green': '#38c172',
 
   'yellow': '#ffed4a',

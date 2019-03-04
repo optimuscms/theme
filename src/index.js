@@ -7,6 +7,7 @@ import { mapActions, mapMutations } from 'vuex';
 import alertStore from './store/modules/alert';
 import confirmationStore from './store/modules/confirmation';
 import dashboardStore from './store/modules/dashboard';
+import userStore from './store/modules/user';
 
 // Import components
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -39,6 +40,7 @@ export default function install(Vue, options = {}) {
         options.store.registerModule('alert', alertStore);
         options.store.registerModule('confirmation', confirmationStore);
         options.store.registerModule('dashboard', dashboardStore);
+        options.store.registerModule('user', userStore);
     }
 
     // Register icons

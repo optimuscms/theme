@@ -28,6 +28,11 @@ $label-size: config('textSizes.sm');
 $label-color: config('colors.blue-light');
 $label-weight: config('fontWeights.bold');
 
+$checkbox-checked-border-color: config('colors.primary') !default;
+$checkbox-checked-background-color: config('colors.primary') !default;
+$checkbox-checked-hover-border-color: config('colors.primary-dark') !default;
+$checkbox-checked-hover-background-color: config('colors.primary-dark') !default;
+
 $help-color: config('colors.grey-darker');
 
 $pagination-color: config('colors.grey-dark');
