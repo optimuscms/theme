@@ -16,7 +16,7 @@ yarn add @optimuscms/theme
 ```javascript
 import OptimusTheme from '@optimuscms/theme';
 
-Vue.use(OptimusTheme);
+Vue.use(OptimusTheme, { vuexStore });
 ```
 
 #### SCSS
