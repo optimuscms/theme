@@ -91,21 +91,32 @@
         watch: {
             newValue(value) {
                 this.$emit('input', value);
+            },
+
+            isOpen(isOpen) {
+                if (! isOpen) {
+                    this.$emit('close');
+                }
             }
         },
 
         created() {
-            document.addEventListener('click', this.close);
+            ['click', 'touchstart'].forEach(action => {
+                document.addEventListener(action, this.close);
+            });
         },
 
         destroyed() {
-            document.removeEventListener('click', this.close);
+            ['click', 'touchstart'].forEach(action => {
+                document.removeEventListener(action, this.close);
+            });
         },
 
         methods: {
             close(event) {
                 if (
-                    (this.$refs.dropdown !== event.target)
+                    this.isOpen
+                    && (this.$refs.dropdown !== event.target)
                     && ! this.$refs.dropdown.contains(event.target)
                 ) {
                     this.isOpen = false;
