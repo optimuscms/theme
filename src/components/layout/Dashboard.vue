@@ -38,7 +38,7 @@
                     </a>
 
                     <side-header
-                        :placeholder-image="userPlaceholderImage"
+                        :avatar="avatar"
                     ></side-header>
 
                     <div class="side-content px-10 py-8">
@@ -93,7 +93,7 @@
                 default: false
             },
             
-            userPlaceholderImage: String
+            avatar: String
         },
 
         computed: {

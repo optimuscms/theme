@@ -39,9 +39,9 @@
 
     export default {
         props: {
-            placeholderImage: {
+            avatar: {
                 type: String,
-                default: '/images/back/person-placeholder.png'
+                default: '/back/images/avatar.png'
             }
         },
 
@@ -57,7 +57,7 @@
             imageSrc() {
                 return this.user.hasOwnProperty('avatar') && this.user.avatar
                     ? this.user.avatar
-                    : this.placeholderImage;
+                    : this.avatar;
             }
         }
     }

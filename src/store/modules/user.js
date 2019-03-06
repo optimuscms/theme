@@ -19,7 +19,7 @@ const mutations = {
 const actions = {
     fetch({ commit }) {
         return new Promise((resolve, reject) => {
-            axios.get('/admin/user').then(response => {
+            axios.get('/admin/api/user').then(response => {
                 commit('set', response.data.data);
 
                 resolve();
