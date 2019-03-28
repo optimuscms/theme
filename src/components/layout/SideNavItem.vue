@@ -3,7 +3,7 @@
         <router-link :to="to" v-if="isRouterLink">
             <span>{{ label }}</span>
 
-            <span class="icon icon-large" @click="toggleSubNav">
+            <span class="icon large" @click="toggleSubNav">
                 <icon :icon="icon" size="sm"></icon>
             </span>
         </router-link>
@@ -11,7 +11,7 @@
         <a @click="$emit('click')" v-else>
             <span>{{ label }}</span>
 
-            <span class="icon icon-large">
+            <span class="icon large">
                 <icon icon="angle-right" size="sm"></icon>
             </span>
         </a>

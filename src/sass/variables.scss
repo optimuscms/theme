@@ -1,8 +1,8 @@
 $body-color: config('colors.grey-darker');
 $link-color: config('colors.blue-light');
 
-$button-weight: config('fontWeights.bold');
 $button-color: config('colors.grey-darker');
+$button-font-weight: config('fontWeights.bold');
 $button-static-color: config('colors.grey-dark');
 
 $button-border-width: 1px;
@@ -18,15 +18,15 @@ $button-colours: (
 
 $button-colours: join($button-colours, (blue: (blue-light, white, blue, grey-lightest)));
 
-$title-size: config('textSizes.xl');
 $title-color: config('colors.blue');
-$title-weight: config('fontWeights.normal');
+$title-font-size: config('textSizes.xl');
+$title-font-weight: config('fontWeights.normal');
 
 $field-margin: config('margin.8');
 
-$label-size: config('textSizes.sm');
 $label-color: config('colors.blue-light');
-$label-weight: config('fontWeights.bold');
+$label-font-size: config('textSizes.sm');
+$label-font-weight: config('fontWeights.bold');
 
 $checkbox-checked-border-color: config('colors.primary') !default;
 $checkbox-checked-background-color: config('colors.primary') !default;
@@ -37,5 +37,3 @@ $help-color: config('colors.grey-darker');
 
 $pagination-color: config('colors.grey-dark');
 $pagination-current-background-color: config('colors.blue-light');
-
-$image-sizes: 45;

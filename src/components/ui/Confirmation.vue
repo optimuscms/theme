@@ -35,7 +35,7 @@
 
             buttonClass: {
                 type: String,
-                default: 'button-green'
+                default: 'green'
             },
 
             buttonCancelText: {

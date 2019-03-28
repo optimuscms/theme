@@ -12,7 +12,7 @@
 
 .multiselect {
     color: $input-color;
-    font-size: $text-size;
+    font-size: $body-font-size;
     min-height: $control-height;
 
     .multiselect__select {
@@ -65,7 +65,7 @@
             margin: 0;
             padding: 0 0 0.5rem;
             color: $input-color;
-            font-size: $text-size;
+            font-size: $body-font-size;
         }
     }
 

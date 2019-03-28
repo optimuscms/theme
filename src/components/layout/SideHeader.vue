@@ -2,7 +2,7 @@
     <div class="side-header px-10 h-24">
         <div class="flex items-center" v-if="userIsSet">
             <div class="flex-no-shrink mr-4">
-                <figure class="image image-45x45">
+                <figure class="image w-12 h-12">
                     <img
                         :src="imageSrc"
                         :alt="user.name"
@@ -23,7 +23,7 @@
                     }"
                     class="flex items-center text-grey hover:text-grey-lighter"
                 >
-                    <span class="icon icon-small mr-1">
+                    <span class="icon small mr-1">
                         <icon icon="cog" size="sm"></icon>
                     </span>
 
