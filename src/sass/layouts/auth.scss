@@ -1,9 +1,9 @@
 .bg-gradient-login {
     background-image: linear-gradient(
         to bottom, 
-        #313542 0%, 
-        #944744 80%, 
-        #824442 100%
+        theme('colors.blue.600') 0%, 
+        theme('colors.coral.800') 80%, 
+        theme('colors.coral.700') 100%
     );
 }
 

@@ -27,12 +27,12 @@
 
         &:first-child {
             border-left: 0;
-            border-radius: 0 0 0 config('borderRadius.default');
+            border-radius: 0 0 0 theme('borderRadius.default');
         }
 
         &:last-child {
             border-right: 0;
-            border-radius: 0 0 config('borderRadius.default') 0;
+            border-radius: 0 0 theme('borderRadius.default') 0;
         }
     }
 }

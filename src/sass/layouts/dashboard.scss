@@ -32,9 +32,9 @@
         justify-content: space-between;
         background: linear-gradient(
             to top,
-            config('colors.blue-darker') 0%,
-            config('colors.blue-dark') 30%,
-            config('colors.blue-dark') 100%,
+            theme('colors.blue.800') 0%,
+            theme('colors.blue.700') 30%,
+            theme('colors.blue.700') 100%,
         );
     }
 
@@ -70,7 +70,7 @@
                 height: 4px;
                 display: block;
                 border-radius: 4px;
-                background-color: config('colors.blue-lighter');
+                background-color: theme('colors.blue.400');
             }
 
             i {

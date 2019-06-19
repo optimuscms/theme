@@ -13,7 +13,7 @@
                     text-align: center;
     
                     a {
-                        color: config('colors.grey-light');
+                        color: theme('colors.grey.400');
                     }
                 }
     
@@ -22,13 +22,13 @@
             &.draft {
                 th,
                 td {
-                    background-color: config('colors.grey-lighter');
+                    background-color: theme('colors.grey.300');
                 }
                 
                 &:not(:hover) {
                     th,
                     td {
-                        color: config('colors.grey-dark');
+                        color: theme('colors.grey.600');
                     }
                 }
             }
@@ -38,10 +38,10 @@
                 td {
                     &.actions {
                         a {
-                            color: config('colors.grey-darker');
+                            color: theme('colors.grey.700');
     
                             &:hover {
-                                color: config('colors.primary');
+                                color: theme('colors.coral.500');
                             }
                         }
                     }

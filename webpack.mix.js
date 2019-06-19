@@ -4,6 +4,6 @@ const tailwindcss = require('tailwindcss');
 mix.sass('src/sass/index.scss', 'dist/styles.css')
    .options({
        processCssUrls: false,
-       postCss: [ tailwindcss('./src/sass/tailwind.js') ],
+       postCss: [ tailwindcss('./src/sass/tailwind.config.js') ],
    })
    .setPublicPath('dist');

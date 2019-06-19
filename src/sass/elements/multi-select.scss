@@ -39,21 +39,21 @@
 
             .multiselect__tag {
                 margin: 0 0.5rem 0.5rem 0;
-                color: config('colors.grey-darker');
-                background-color: config('colors.grey-light');
+                color: theme('colors.grey.700');
+                background-color: theme('colors.grey.400');
 
                 .multiselect__tag-icon {
                     &:after {
-                        color: config('colors.grey-darker');
+                        color: theme('colors.grey.700');
                     }
                 }
 
                 &:hover {
                     .multiselect__tag-icon {
-                        background-color: config('colors.grey-dark');
+                        background-color: theme('colors.grey.600');
 
                         &:after {
-                            color: config('colors.white');
+                            color: theme('colors.white');
                         }
                     }
                 }
@@ -80,28 +80,28 @@
             }
 
             &.multiselect__option--highlight {
-                color: config('colors.black');
-                background-color: config('colors.grey-light');
+                color: theme('colors.black');
+                background-color: theme('colors.grey.400');
 
                 &:after {
-                    color: config('colors.grey-darker');
+                    color: theme('colors.grey.700');
                 }
             }
 
             &.multiselect__option--selected {
-                color: config('colors.grey-lightest');
-                background-color: config('colors.primary');
+                color: theme('colors.grey.200');
+                background-color: theme('colors.coral.500');
 
                 &:after {
-                    color: config('colors.grey-lightest');
+                    color: theme('colors.grey.200');
                 }
 
                 &.multiselect__option--highlight {
-                    color: config('colors.white');
-                    background-color: config('colors.primary-dark');
+                    color: theme('colors.white');
+                    background-color: theme('colors.coral.600');
 
                     &:after {
-                        color: config('colors.white');
+                        color: theme('colors.white');
                     }
                 }
             }

@@ -21,7 +21,7 @@
                         name: 'users.edit',
                         params: { id: user.id }
                     }"
-                    class="flex items-center text-grey hover:text-grey-lighter"
+                    class="flex items-center text-grey-500 hover:text-grey-400"
                 >
                     <span class="icon small mr-1">
                         <icon icon="cog" size="sm"></icon>

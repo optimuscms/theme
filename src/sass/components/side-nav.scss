@@ -22,13 +22,13 @@
             display: flex;
             padding: 0.5rem 0;
             align-items: center;
-            color: config('colors.white');
+            color: theme('colors.white');
             justify-content: space-between;
 
             > span {
                 &:not(.icon) {
                     text-transform: uppercase;
-                    letter-spacing: config('tracking.extra-wide');
+                    letter-spacing: theme('letterSpacing.widest');
                 }
 
                 &.icon {
@@ -40,7 +40,7 @@
         &:hover,
         &.active {
             > a {
-                color: config('colors.primary');
+                color: theme('colors.coral.500');
             }
         }
     }
@@ -70,16 +70,16 @@
             display: block;
             padding: 0.5rem 0.75rem;
             text-transform: uppercase;
-            color: config('colors.white');
-            font-size: config('textSizes.xs');
-            border-radius: config('borderRadius.sm');
-            letter-spacing: config('tracking.extra-wide');
+            color: theme('colors.white');
+            font-size: theme('fontSize.xs');
+            border-radius: theme('borderRadius.sm');
+            letter-spacing: theme('letterSpacing.widest');
         }
 
         &:hover,
         &.active {
             > a {
-                background-color: config('colors.blue-darkest');
+                background-color: theme('colors.blue.900');
             }
         }
     }

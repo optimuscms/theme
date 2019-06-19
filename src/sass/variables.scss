@@ -1,39 +1,44 @@
-$body-color: config('colors.grey-darker');
-$link-color: config('colors.blue-light');
+$body-color: theme('colors.grey.700');
+$link-color: theme('colors.blue.500');
 
-$button-color: config('colors.grey-darker');
-$button-font-weight: config('fontWeights.bold');
-$button-static-color: config('colors.grey-dark');
+$button-color: theme('colors.grey.700');
+$button-font-weight: theme('fontWeight.bold');
+$button-static-color: theme('colors.grey.600');
 
 $button-border-width: 1px;
-$button-border-color: config('colors.grey-light');
-$button-hover-border-color: config('colors.grey');
+$button-border-color: theme('colors.grey.400');
+$button-hover-border-color: theme('colors.grey.500');
 
 $button-colours: (
-    primary: (primary, white, primary-dark, grey-lightest),
-    grey: (grey-light, black, grey, black),
-    green: (green, white, green-dark, grey-lightest),
-    red: (red, white, red-dark, grey-lightest),
+    blue: ('blue.400', 'white', 'blue.500', 'grey.200'),
+    coral: ('coral.500', 'white', 'coral.600', 'grey.200'),
+    grey: ('grey.400', 'black', 'grey.500', 'black'),
+    green: ('green.500', 'white', 'green.600', 'grey.200'),
+    red: ('red.500', 'white', 'red.600', 'grey.200')
 );
 
-$button-colours: join($button-colours, (blue: (blue-light, white, blue, grey-lightest)));
+$title-color: theme('colors.blue.600');
+$title-font-size: theme('fontSize.xl');
+$title-font-weight: theme('fontWeight.normal');
 
-$title-color: config('colors.blue');
-$title-font-size: config('textSizes.xl');
-$title-font-weight: config('fontWeights.normal');
+$field-margin: theme('margin.8');
 
-$field-margin: config('margin.8');
+$label-color: theme('colors.blue.500');
+$label-font-size: theme('fontSize.sm');
+$label-font-weight: theme('fontWeight.bold');
 
-$label-color: config('colors.blue-light');
-$label-font-size: config('textSizes.sm');
-$label-font-weight: config('fontWeights.bold');
+$input-color: theme('colors.grey.700');
+$input-hover-color: theme('colors.grey.800');
 
-$checkbox-checked-border-color: config('colors.primary') !default;
-$checkbox-checked-background-color: config('colors.primary') !default;
-$checkbox-checked-hover-border-color: config('colors.primary-dark') !default;
-$checkbox-checked-hover-background-color: config('colors.primary-dark') !default;
+$checkbox-checked-color: theme('colors.coral.500');
+$checkbox-checked-hover-color: theme('colors.coral.600');
+$checkbox-checked-focus-color: theme('colors.coral.600');
 
-$help-color: config('colors.grey-darker');
+$radio-checked-color: theme('colors.coral.500');
+$radio-checked-hover-color: theme('colors.coral.600');
+$radio-checked-focus-color: theme('colors.coral.600');
 
-$pagination-color: config('colors.grey-dark');
-$pagination-current-background-color: config('colors.blue-light');
+$help-color: theme('colors.grey.700');
+
+$pagination-color: theme('colors.grey.600');
+$pagination-current-background-color: theme('colors.blue.500');

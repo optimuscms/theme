@@ -1,5 +1,5 @@
 <template>
-    <notification class="bg-red text-white" :closeable="false">
+    <notification class="bg-red-500 text-white" :closeable="false">
         <ul class="list-reset">
             <template v-for="errorGroup in errors">
                 <li :key="index" v-for="(error, index) in errorGroup">

@@ -33,32 +33,32 @@
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-    background: config('colors.primary') !important;
-    border-color: config('colors.primary') !important;
+    background: theme('colors.coral.500') !important;
+    border-color: theme('colors.coral.500') !important;
 }
 
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n+1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n+1)),
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)) {
-    box-shadow: -10px 0 0 config('colors.primary') !important;
+    box-shadow: -10px 0 0 theme('colors.coral.500') !important;
 }
 
 .flatpickr-day.week.selected {
-    box-shadow: -5px 0 0 config('colors.primary'), 5px 0 0 config('colors.primary') !important;
+    box-shadow: -5px 0 0 theme('colors.coral.500'), 5px 0 0 theme('colors.coral.500') !important;
 }
 
 .flatpickr-months .flatpickr-prev-month:hover,
 .flatpickr-months .flatpickr-next-month:hover {
-    color: config('colors.blue-dark') !important;
+    color: theme('colors.blue.700') !important;
 }
 
 .flatpickr-day.today {
-    border-color: config('colors.blue-dark') !important;
+    border-color: theme('colors.blue.700') !important;
 }
 
 .flatpickr-day.today:hover,
 .flatpickr-day.today:focus {
-    color: config('colors.white') !important;
-    background: config('colors.blue-dark') !important;
-    border-color: config('colors.blue-dark') !important;
+    color: theme('colors.white') !important;
+    background: theme('colors.blue.700') !important;
+    border-color: theme('colors.blue.700') !important;
 }

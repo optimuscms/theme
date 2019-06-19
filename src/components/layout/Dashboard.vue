@@ -3,12 +3,12 @@
         tag="div"
         mode="out-in"
         name="dashboard"
-        class="min-h-screen bg-grey-lightest"
+        class="min-h-screen bg-grey-100"
     >
         <div
             key="loader"
             v-if="loadingApp"
-            class="flex min-h-screen items-center justify-center bg-grey-lightest"
+            class="flex min-h-screen items-center justify-center bg-grey-100"
         >
             <div class="text-center pulse">
                 <logo class="w-16"></logo>
@@ -17,7 +17,7 @@
                     <strong>Optimus</strong>
                 </div>
 
-                <div class="subtitle text-primary">
+                <div class="subtitle text-coral-500">
                     <i>loading...</i>
                 </div>
             </div>
@@ -30,8 +30,8 @@
             :class="{ 'show-side': sideIsVisible }"
         >
             <transition name="side">
-                <div class="side bg-blue-dark" v-show="! loadingApp">
-                    <a class="side-toggle bg-blue-dark lg:hidden" @click="toggleSide">
+                <div class="side bg-blue-700" v-show="! loadingApp">
+                    <a class="side-toggle bg-blue-700 lg:hidden" @click="toggleSide">
                         <span class="dots">
                             <i></i>
                         </span>
