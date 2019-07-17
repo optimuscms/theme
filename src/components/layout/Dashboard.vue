@@ -3,12 +3,12 @@
         tag="div"
         mode="out-in"
         name="dashboard"
-        class="min-h-screen bg-grey-100"
+        class="min-h-screen bg-grey-200"
     >
         <div
             key="loader"
             v-if="loadingApp"
-            class="flex min-h-screen items-center justify-center bg-grey-100"
+            class="flex min-h-screen items-center justify-center bg-grey-200"
         >
             <div class="text-center pulse">
                 <logo class="w-16"></logo>
