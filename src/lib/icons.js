@@ -10,10 +10,11 @@ import {
     faSort,
     faSortDown,
     faSortUp,
-    faTrashAlt
+    faSpinner,
+    faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
-export default { 
+export default {
     register() {
         library.add(
             faAngleDown, faAngleRight, faAngleUp,
@@ -25,7 +26,8 @@ export default {
             faSort,
             faSortDown,
             faSortUp,
+            faSpinner,
             faTrashAlt
         );
-    }
-}
+    },
+};

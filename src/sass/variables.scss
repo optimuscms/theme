@@ -9,14 +9,6 @@ $button-border-width: 1px;
 $button-border-color: theme('colors.grey.400');
 $button-hover-border-color: theme('colors.grey.500');
 
-$button-colours: (
-    blue: ('blue.400', 'white', 'blue.500', 'grey.200'),
-    coral: ('coral.500', 'white', 'coral.600', 'grey.200'),
-    grey: ('grey.400', 'black', 'grey.500', 'black'),
-    green: ('green.500', 'white', 'green.600', 'grey.200'),
-    red: ('red.500', 'white', 'red.600', 'grey.200')
-);
-
 $title-color: theme('colors.blue.600');
 $title-font-size: theme('fontSize.xl');
 $title-font-weight: theme('fontWeight.normal');

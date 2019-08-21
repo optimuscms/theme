@@ -1,5 +1,5 @@
 <template>
-    <nav class="pagination is-centered" v-if="isVisible">
+    <nav v-if="isVisible" class="pagination is-centered">
         <a
             class="pagination-previous"
             :disabled="! hasPreviousPage"
@@ -13,17 +13,17 @@
         >Next</a>
 
         <ul class="pagination-list">
-            <li :key="page" v-for="page in pages">
+            <li v-for="page in pages" :key="page">
                 <span
                     v-if="page === seperator"
                     class="pagination-ellipsis"
                 >{{ seperator }}</span>
 
                 <a
-                    class="pagination-link"
                     v-else
-                    @click="changePage(page + 1)"
+                    class="pagination-link"
                     :class="{ 'current': page === currentPage }"
+                    @click="changePage(page + 1)"
                 >{{ page + 1 }}</a>
             </li>
         </ul>
@@ -31,117 +31,117 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            options: {
-                type: Object,
-                default: null
-            },
-
-            visiblePages: {
-                type: Number,
-                default: 3
-            },
-
-            seperator: {
-                type: String,
-                default: '...'
-            }
+export default {
+    props: {
+        options: {
+            type: Object,
+            default: null,
         },
-        
-        computed: {
-            isVisible() {
-                return this.options && this.options.last_page > 1;
-            },
 
-            currentPage() {
-                return this.options ? this.options.current_page - 1 : 0;
-            },
+        visiblePages: {
+            type: Number,
+            default: 3,
+        },
 
-            previousPage() {
-                return this.options.current_page - 1;
-            },
+        seperator: {
+            type: String,
+            default: '...',
+        },
+    },
 
-            nextPage() {
-                return this.options.current_page + 1;
-            },
+    computed: {
+        isVisible() {
+            return this.options && this.options.last_page > 1;
+        },
 
-            hasPreviousPage() {
-                return this.previousPage > 0;
-            },
+        currentPage() {
+            return this.options ? this.options.current_page - 1 : 0;
+        },
 
-            hasNextPage() {
-                return this.nextPage <= this.options.last_page;
-            },
+        previousPage() {
+            return this.options.current_page - 1;
+        },
 
-            pages() {
-                let pages;
-                
-                if (this.filteredPages) {
-                    pages = [
-                        this.filteredPages[0] - 1 === 1 ? 1 : this.seperator,
+        nextPage() {
+            return this.options.current_page + 1;
+        },
 
-                        ...this.filteredPages,
+        hasPreviousPage() {
+            return this.previousPage > 0;
+        },
 
-                        this.filteredPages[this.filteredPages.length - 1] + 1 === this.options.last_page - 2
-                            ? this.options.last_page - 2
-                            : this.seperator
-                    ];
-                } else {
-                    pages = [ ...Array(this.options.last_page - 2).keys() ].map(page => {
-                        return page + 1
-                    });
-                }
+        hasNextPage() {
+            return this.nextPage <= this.options.last_page;
+        },
 
-                return [
-                    0,
-                    ...pages,
-                    this.options.last_page - 1
+        pages() {
+            let pages;
+
+            if (this.filteredPages) {
+                pages = [
+                    this.filteredPages[0] - 1 === 1 ? 1 : this.seperator,
+
+                    ...this.filteredPages,
+
+                    this.filteredPages[this.filteredPages.length - 1] + 1 === this.options.last_page - 2
+                        ? this.options.last_page - 2
+                        : this.seperator,
                 ];
-            },
-
-            filteredPages() {
-                let toFilterPages = [...Array(this.options.last_page).keys()].slice(2, -2);
-
-                if (this.visiblePages > toFilterPages.length) {
-                    return null;
-                }
-
-                let diff = this.visiblePages / 2;
-                let diffFirst = this.currentPage - toFilterPages[0];
-                let diffLast = this.currentPage - toFilterPages[toFilterPages.length - 1];
-
-                if (diffFirst < diff) {
-                    return toFilterPages.slice(0, this.visiblePages);
-                }
-                
-                if (diffLast >= -diff) {
-                    return toFilterPages.slice(-this.visiblePages);
-                }
-
-                return toFilterPages.filter(page => {
-                    let diffPage = this.currentPage - page;
-
-                    return diffPage < 0
-                        ? Math.abs(diffPage) <= diff
-                        : diffPage < diff;
+            } else {
+                pages = [ ...Array(this.options.last_page - 2).keys() ].map(page => {
+                    return page + 1;
                 });
             }
+
+            return [
+                0,
+                ...pages,
+                this.options.last_page - 1,
+            ];
         },
 
-        methods: {
-            changePage(page) {
-                if (
-                    page < 1
+        filteredPages() {
+            let toFilterPages = [...Array(this.options.last_page).keys()].slice(2, -2);
+
+            if (this.visiblePages > toFilterPages.length) {
+                return null;
+            }
+
+            let diff = this.visiblePages / 2;
+            let diffFirst = this.currentPage - toFilterPages[0];
+            let diffLast = this.currentPage - toFilterPages[toFilterPages.length - 1];
+
+            if (diffFirst < diff) {
+                return toFilterPages.slice(0, this.visiblePages);
+            }
+
+            if (diffLast >= -diff) {
+                return toFilterPages.slice(-this.visiblePages);
+            }
+
+            return toFilterPages.filter(page => {
+                let diffPage = this.currentPage - page;
+
+                return diffPage < 0
+                    ? Math.abs(diffPage) <= diff
+                    : diffPage < diff;
+            });
+        },
+    },
+
+    methods: {
+        changePage(page) {
+            if (
+                page < 1
                     || page > this.options.last_page
                     || page === this.options.current_page
-                ) {
-                    return;
-                }
-
-                this.options.current_page = page;
-                this.$emit('change-page', page);
+            ) {
+                return;
             }
-        }
-    }
+
+            this.options.current_page = page;
+            this.$emit('change-page', page);
+        },
+    },
+};
 </script>

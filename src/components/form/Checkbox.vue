@@ -2,11 +2,11 @@
     <div class="control">
         <input
             :id="id"
+            v-model="newValue"
             :name="id"
             :type="type"
             class="checkbox"
             :value="checkedValue"
-            v-model="newValue"
         >
 
         <label :for="id">{{ label }}</label>
@@ -14,25 +14,26 @@
 </template>
 
 <script>
-    import inputMixin from '../../mixins/input';
+import inputMixin from '../../mixins/input';
 
-    export default {
-        mixins: [ inputMixin ],
-        
-        props: {
-            checkedValue: {
-                default: true
-            },
+export default {
+    mixins: [ inputMixin ],
 
-            label: {
-                type: String,
-                required: true
-            },
+    props: {
+        checkedValue: {
+            type: null,
+            default: true,
+        },
 
-            type: {
-                type: String,
-                default: 'checkbox'
-            }
-        }
-    }
+        label: {
+            type: String,
+            required: true,
+        },
+
+        type: {
+            type: String,
+            default: 'checkbox',
+        },
+    },
+};
 </script>

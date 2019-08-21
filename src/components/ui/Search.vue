@@ -1,21 +1,21 @@
 <template>
     <form @submit.prevent="submit">
         <label for="search" class="hidden">Search</label>
-        
+
         <div class="field addons">
             <div class="control flex-grow">
                 <o-input
                     id="search"
-                    type="search"
                     v-model="newValue"
+                    type="search"
                     :placeholder="placeholder"
-                ></o-input>
+                />
             </div>
 
             <div class="control">
                 <button class="button">
                     <span class="icon">
-                        <icon icon="search"></icon>
+                        <icon icon="search" />
                     </span>
                 </button>
             </div>
@@ -24,28 +24,29 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            placeholder: {
-                type: String,
-                default: 'Search'
-            },
-
-            value: {
-                default: null
-            }
+export default {
+    props: {
+        placeholder: {
+            type: String,
+            default: 'Search',
         },
 
-        data() {
-            return {
-                newValue: this.value 
-            }
+        value: {
+            type: String,
+            default: null,
         },
+    },
 
-        methods: {
-            submit() {
-                this.$emit('submit', this.newValue);
-            }
-        }
-    }
+    data() {
+        return {
+            newValue: this.value,
+        };
+    },
+
+    methods: {
+        submit() {
+            this.$emit('submit', this.newValue);
+        },
+    },
+};
 </script>

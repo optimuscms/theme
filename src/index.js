@@ -1,12 +1,22 @@
+// Import Polyfills
+import 'core-js/features/array/map';
+import 'core-js/features/array/keys';
+import 'core-js/features/array/find';
+import 'core-js/features/array/slice';
+import 'core-js/features/array/filter';
+import 'core-js/features/array/for-each';
+import 'core-js/features/array/includes';
+import 'core-js/features/array/index-of';
+
 // Import plugins
 import Icons from './lib/icons';
-import NProgress from 'nprogress';
-import { mapActions, mapMutations } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 // Import vuex modules
 import alertStore from './store/modules/alert';
 import confirmationStore from './store/modules/confirmation';
 import dashboardStore from './store/modules/dashboard';
+import loaderStore from './store/modules/loader';
 import userStore from './store/modules/user';
 
 // Import components
@@ -27,6 +37,7 @@ import SideSubNavItem from './components/layout/SideSubNavItem';
 import Alert from './components/ui/Alert';
 import Confirmation from './components/ui/Confirmation';
 import Dropdown from './components/ui/Dropdown';
+import Loader from './components/ui/Loader';
 import Modal from './components/ui/Modal';
 import Notification from './components/ui/Notification';
 import Pagination from './components/ui/Pagination';
@@ -40,32 +51,30 @@ export default function install(Vue, options = {}) {
         options.store.registerModule('alert', alertStore);
         options.store.registerModule('confirmation', confirmationStore);
         options.store.registerModule('dashboard', dashboardStore);
+        options.store.registerModule('loader', loaderStore);
         options.store.registerModule('user', userStore);
     }
 
     // Register icons
     Icons.register();
 
-    // Install plugins
-    window.progress = NProgress;
-
-    progress.configure({
-        showSpinner: false,
-        parent: '#main'
-    });
-
     // Mixins
     Vue.mixin({
+        computed: {
+            ...mapGetters({
+                isLoading: 'loader/isLoading',
+            }),
+        },
+
         methods: {
             ...mapActions({
-                openConfirmation: 'confirmation/open'
-            }),
-            
-            ...mapMutations({
+                startLoading: 'loader/start',
+                stopLoading: 'loader/stop',
                 openAlert: 'alert/open',
-                setTitle: 'dashboard/setTitle'
-            })
-        }
+                setTitle: 'dashboard/setTitle',
+                openConfirmation: 'confirmation/open',
+            }),
+        },
     });
 
     // Register components
@@ -89,6 +98,7 @@ export default function install(Vue, options = {}) {
     Vue.component('o-alert', Alert);
     Vue.component('o-confirmation', Confirmation);
     Vue.component('o-dropdown', Dropdown);
+    Vue.component('o-loader', Loader);
     Vue.component('o-modal', Modal);
     Vue.component('o-notification', Notification);
     Vue.component('o-pagination', Pagination);

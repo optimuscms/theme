@@ -6,12 +6,12 @@
         class="min-h-screen bg-grey-200"
     >
         <div
+            v-if="loading"
             key="loader"
-            v-if="loadingApp"
             class="flex min-h-screen items-center justify-center bg-grey-200"
         >
             <div class="text-center pulse">
-                <logo class="w-16"></logo>
+                <logo class="w-16" />
 
                 <div class="title text-3xl uppercase">
                     <strong>Optimus</strong>
@@ -24,40 +24,38 @@
         </div>
 
         <div
+            v-show="! loading"
             key="dashboard"
             class="dashboard"
-            v-show="! loadingApp"
             :class="{ 'show-side': sideIsVisible }"
         >
             <transition name="side">
-                <div class="side bg-blue-700" v-show="! loadingApp">
+                <div v-show="! loading" class="side bg-blue-700">
                     <a class="side-toggle bg-blue-700 lg:hidden" @click="toggleSide">
                         <span class="dots">
-                            <i></i>
+                            <i />
                         </span>
                     </a>
 
                     <side-header
                         :avatar="avatar"
-                    ></side-header>
+                    />
 
                     <div class="side-content px-10 py-8">
                         <side-nav>
-                            <slot name="side-nav"></slot>
+                            <slot name="side-nav" />
                         </side-nav>
                     </div>
                 </div>
             </transition>
 
             <transition name="main">
-                <div id="main" class="main ml-5 lg:ml-0" v-show="! loadingApp">
+                <div v-show="! loading" id="main" class="main ml-5 lg:ml-0">
                     <main-header>
-                        <slot name="header"></slot>
+                        <slot name="header" />
                     </main-header>
 
-                    <loader :loading="loadingRoute">
-                        <router-view></router-view>
-                    </loader>
+                    <router-view />
                 </div>
             </transition>
         </div>
@@ -65,47 +63,43 @@
 </template>
 
 <script>
-    import { mapGetters, mapMutations } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
-    import Loader from '../ui/Loader';
-    import Logo from './OptimusLogo';
-    import MainHeader from './MainHeader';
-    import SideHeader from './SideHeader';
-    import SideNav from './SideNav';
-    
-    export default {
-        components: {
-            Loader,
-            Logo,
-            MainHeader,
-            SideHeader,
-            SideNav
+import Logo from './OptimusLogo';
+import MainHeader from './MainHeader';
+import SideHeader from './SideHeader';
+import SideNav from './SideNav';
+
+export default {
+    components: {
+        Logo,
+        MainHeader,
+        SideHeader,
+        SideNav,
+    },
+
+    props: {
+        loading: {
+            type: Boolean,
+            default: false,
         },
 
-        props: {
-            loadingApp: {
-                type: Boolean,
-                default: false
-            },
-
-            loadingRoute: {
-                type: Boolean,
-                default: false
-            },
-            
-            avatar: String
+        avatar: {
+            type: String,
+            default: null,
         },
+    },
 
-        computed: {
-            ...mapGetters({
-                sideIsVisible: 'dashboard/sideIsVisible'
-            })
-        },
+    computed: {
+        ...mapGetters({
+            sideIsVisible: 'dashboard/sideIsVisible',
+        }),
+    },
 
-        methods: {
-            ...mapMutations({
-                toggleSide: 'dashboard/toggleSide'
-            })
-        }
-    }
+    methods: {
+        ...mapActions({
+            toggleSide: 'dashboard/toggleSide',
+        }),
+    },
+};
 </script>

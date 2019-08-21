@@ -3,7 +3,7 @@
         <div class="control">
             <span class="button static">
                 <span class="icon">
-                    <icon icon="calendar-alt"></icon>
+                    <icon icon="calendar-alt" />
                 </span>
             </span>
         </div>
@@ -12,9 +12,9 @@
             <input
                 :id="id"
                 ref="picker"
+                v-model="newValue"
                 type="text"
                 class="input"
-                v-model="newValue"
                 :required="required"
             >
         </div>
@@ -22,58 +22,61 @@
 </template>
 
 <script>
-    import flatpickr from 'flatpickr';
-    require('flatpickr/dist/flatpickr.css');
+import flatpickr from 'flatpickr';
+require('flatpickr/dist/flatpickr.css');
 
-    import inputMixin from '../../mixins/input';
-    
-    export default {
-        mixins: [ inputMixin ],
+import inputMixin from '../../mixins/input';
 
-        props: {
-            time: {
-                type: Boolean,
-                default: true
-            },
+export default {
+    mixins: [ inputMixin ],
 
-            format: String
+    props: {
+        time: {
+            type: Boolean,
+            default: true,
         },
 
-        data() {
-            return  {
-                flatpickr: null
+        format: {
+            type: String,
+            default: null,
+        },
+    },
+
+    data() {
+        return  {
+            flatpickr: null,
+        };
+    },
+
+    computed: {
+        altFormat() {
+            if (this.format) {
+                return this.format;
             }
+
+            return this.time ? 'F j, Y - h:i K' : 'F j, Y';
         },
+    },
 
-        computed: {
-            altFormat() {
-                if (this.format) {
-                    return this.format;
-                }
+    watch: {
+        value(value) {
+            this.newValue = value;
 
-                return this.time ? 'F j, Y - h:i K' : 'F j, Y';
-            }
+            this.flatpickr.setDate(value, true, 'Y-m-d H:i:S');
         },
+    },
 
-        watch: {
-            value(value) {
-                this.newValue = value;
+    mounted() {
+        this.flatpickr = flatpickr(this.$refs.picker, {
+            altInput: true,
+            enableTime: this.time,
+            altFormat: this.altFormat,
+            dateFormat: 'Y-m-d H:i:S',
+        });
+    },
 
-                this.flatpickr.setDate(value, true, 'Y-m-d H:i:S');
-            }
-        },
-
-        mounted() {
-            this.flatpickr = flatpickr(this.$refs.picker, {
-                altInput: true,
-                enableTime: this.time,
-                altFormat: this.altFormat,
-                dateFormat: 'Y-m-d H:i:S'
-            });
-        },
-
-        beforeDestroy() {
-            this.flatpickr.destroy();
-        }
-    }
+    beforeDestroy() {
+        this.flatpickr.destroy();
+    },
+};
 </script>

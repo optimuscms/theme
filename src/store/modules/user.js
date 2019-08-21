@@ -1,31 +1,46 @@
 const state = {
-    data: {}
+    data: null,
+    isLoading: false,
 };
 
 const getters = {
-    data: state => state.data
+    data: state => state.data,
 };
 
 const mutations = {
+    startLoading(state) {
+        state.isLoading = true;
+    },
+
+    stopLoading(state) {
+        state.isLoading = false;
+    },
+
     set(state, data) {
         state.data = data;
     },
 
     update(state, data) {
         state.data = { ...state.data, ...data };
-    }
+    },
 };
 
 const actions = {
-    fetch({ commit }) {
-        return new Promise((resolve, reject) => {
-            axios.get('/admin/api/user').then(response => {
+    fetch({ commit, state }) {
+        if (! state.data && ! state.isLoading) {
+            commit('startLoading');
+
+            return axios.get('/admin/api/user').then(response => {
                 commit('set', response.data.data);
 
-                resolve();
+                commit('stopLoading');
             });
-        });
-    }
+        }
+    },
+
+    update({ commit }, data) {
+        commit('update', data);
+    },
 };
 
 export default {
@@ -33,5 +48,5 @@ export default {
     state,
     getters,
     mutations,
-    actions
+    actions,
 };

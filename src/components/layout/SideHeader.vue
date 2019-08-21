@@ -1,6 +1,6 @@
 <template>
     <div class="side-header px-10 h-24">
-        <div class="flex items-center" v-if="userIsSet">
+        <div v-if="userIsSet" class="flex items-center">
             <div class="flex-no-shrink mr-4">
                 <figure class="image w-12 h-12">
                     <img
@@ -24,7 +24,7 @@
                     class="flex items-center text-grey-500 hover:text-grey-400"
                 >
                     <span class="icon small mr-1">
-                        <icon icon="cog" size="sm"></icon>
+                        <icon icon="cog" size="sm" />
                     </span>
 
                     <span class="text-xs">Your details</span>
@@ -35,30 +35,30 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
-    export default {
-        props: {
-            avatar: {
-                type: String,
-                default: '/back/images/avatar.png'
-            }
+export default {
+    props: {
+        avatar: {
+            type: String,
+            default: '/back/images/avatar.png',
+        },
+    },
+
+    computed: {
+        ...mapGetters({
+            user: 'user/data',
+        }),
+
+        userIsSet() {
+            return this.user;
         },
 
-        computed: {
-            ...mapGetters({
-                user: 'user/data'
-            }),
-
-            userIsSet() {
-                return !! Object.keys(this.user).length;
-            },
-
-            imageSrc() {
-                return this.user.hasOwnProperty('avatar') && this.user.avatar
-                    ? this.user.avatar
-                    : this.avatar;
-            }
-        }
-    }
+        imageSrc() {
+            return this.user && this.user.avatar
+                ? this.user.avatar
+                : this.avatar;
+        },
+    },
+};
 </script>

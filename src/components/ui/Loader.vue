@@ -1,48 +1,53 @@
 <template>
-    <transition :css="false" @before-enter="beforeEnter" @enter="enter">
-        <div v-show="! loading">
-            <slot></slot>
+    <transition name="loader" mode="out-in">
+        <div v-if="loading" key="loader" class="flex items-center justify-center p-8">
+            <transition name="fade">
+                <div v-if="showLoader" class="icon">
+                    <icon icon="spinner" spin size="lg" />
+                </div>
+            </transition>
+        </div>
+
+        <div v-else key="content">
+            <slot />
         </div>
     </transition>
 </template>
 
 <script>
-    import Velocity from 'velocity-animate';
-
-    export default {
-        props: {
-            loading: {
-                type: Boolean,
-                required: true
-            }
+export default {
+    props: {
+        loading: {
+            type: Boolean,
+            default: false,
         },
 
-        watch: {
-            loading(value) {
-                if (value) {
-                    progress.start();
+        delay: {
+            type: Number,
+            default: 350,
+        },
+    },
+
+    data() {
+        return {
+            timeout: null,
+            showLoader: false,
+        };
+    },
+
+    watch: {
+        loading: {
+            handler(isLoading) {
+                if (isLoading) {
+                    this.timeout = setTimeout(() => {
+                        this.showLoader = true;
+                    }, this.delay);
                 } else {
-                    progress.done();
+                    clearTimeout(this.timeout);
                 }
-            }
-        },
-
-        mounted() {
-            if (this.loading) {
-                progress.start();
-            }
-        },
-
-        methods: {
-            beforeEnter(el) {
-                el.style.opacity = 0;
             },
-
-            enter(el, done) {
-                Velocity(el, { opacity: 1 }, {
-                    duration: 150
-                });
-            },
-        }
-    }
+            immediate: true,
+        },
+    },
+};
 </script>

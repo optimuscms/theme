@@ -1,12 +1,12 @@
 const state = {
     isOpen: false,
-    item: null
+    item: {},
 };
 
 const getters = {
     isOpen: state => state.isOpen,
 
-    getItem: state => state.item
+    item: state => state.item,
 };
 
 const mutations = {
@@ -20,19 +20,19 @@ const mutations = {
 
     close(state) {
         state.isOpen = false;
-    }
+    },
 };
 
 const actions = {
-    open({ commit}, item = null) {
+    open({ commit}, item = {}) {
         commit('setItem', item);
         commit('open');
     },
 
     close({ commit }) {
-        commit('setItem', null);
+        commit('setItem', {});
         commit('close');
-    }
+    },
 };
 
 export default {
@@ -40,5 +40,5 @@ export default {
     state,
     getters,
     mutations,
-    actions
+    actions,
 };

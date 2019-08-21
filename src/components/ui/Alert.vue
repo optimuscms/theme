@@ -2,7 +2,7 @@
     <o-modal :active="isOpen" @close="confirm">
         <div class="modal-content bg-white rounded max-w-sm">
             <div class="content px-6 pt-8 text-center">
-                <slot></slot>
+                <slot />
             </div>
 
             <div class="p-6 text-center">
@@ -17,42 +17,42 @@
 </template>
 
 <script>
-    import { mapGetters, mapMutations } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
-    export default {
-        props: {
-            id: {
-                type: String,
-                default: null
-            },
-            
-            buttonText: {
-                type: String,
-                default: 'Ok'
-            },
-
-            buttonClass: {
-                type: String,
-                default: 'green'
-            }
+export default {
+    props: {
+        id: {
+            type: String,
+            default: null,
         },
 
-        computed: {
-            ...mapGetters({
-                isOpen: 'alert/isOpen'
-            })
+        buttonText: {
+            type: String,
+            default: 'Ok',
         },
 
-        methods: {
-            ...mapMutations({
-                open: 'alert/open',
-                close: 'alert/close'
-            }),
+        buttonClass: {
+            type: String,
+            default: 'green',
+        },
+    },
 
-            confirm() {
-                this.$emit('close');
-                this.close();
-            }
-        }
-    }
+    computed: {
+        ...mapGetters({
+            isOpen: 'alert/isOpen',
+        }),
+    },
+
+    methods: {
+        ...mapActions({
+            open: 'alert/open',
+            close: 'alert/close',
+        }),
+
+        confirm() {
+            this.$emit('close');
+            this.close();
+        },
+    },
+};
 </script>

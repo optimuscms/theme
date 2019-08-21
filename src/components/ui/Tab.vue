@@ -1,36 +1,42 @@
 <template>
     <section v-show="isActive" :id="computedId">
-        <slot></slot>
+        <slot />
     </section>
 </template>
 
 <script>
-    export default {
-        props: {
-            id: {
-                default: null
-            },
-
-            name: {
-                required: true
-            }
-        },
-        
-        data() {
-            return {
-                isActive: false,
-                isVisible: true
-            }
+export default {
+    props: {
+        id: {
+            type: String,
+            default: null,
         },
 
-        computed: {
-            computedId() {
-                return this.id ? this.id : this.name.toLowerCase().replace(/ /g, '-');
-            },
+        name: {
+            type: String,
+            required: true,
+        },
+    },
 
-            hash() {
-                return '#' + this.computedId;
+    data() {
+        return {
+            isActive: false,
+            isVisible: true,
+        };
+    },
+
+    computed: {
+        computedId() {
+            if (this.id) {
+                return this.id;
             }
-        }
-    }
+
+            return `tab-${this.name.toLowerCase().replace(/ /g, '-')}`;
+        },
+
+        hash() {
+            return '#' + this.computedId;
+        },
+    },
+};
 </script>

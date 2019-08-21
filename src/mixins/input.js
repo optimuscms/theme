@@ -1,24 +1,24 @@
 export default {
     props: {
         value: {
-            default: null
+            default: null,
         },
 
         id: {
             type: String,
-            required: true
+            required: true,
         },
 
         required: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
 
     data() {
         return  {
-            newValue: this.value
-        }
+            newValue: this.value,
+        };
     },
 
     watch: {
@@ -28,6 +28,6 @@ export default {
 
         newValue(value) {
             this.$emit('input', value);
-        }
-    }
-}
+        },
+    },
+};

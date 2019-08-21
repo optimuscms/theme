@@ -1,103 +1,106 @@
 <template>
     <li :class="{ 'active': sectionIsActive }">
-        <router-link :to="to" v-if="isRouterLink">
+        <router-link v-if="isRouterLink" :to="to">
             <span>{{ label }}</span>
 
             <span class="icon large" @click="toggleSubNav">
-                <icon :icon="icon" size="sm"></icon>
+                <icon :icon="icon" size="sm" />
             </span>
         </router-link>
 
-        <a @click="$emit('click')" v-else>
+        <a v-else @click="$emit('click')">
             <span>{{ label }}</span>
 
             <span class="icon large">
-                <icon icon="angle-right" size="sm"></icon>
+                <icon icon="angle-right" size="sm" />
             </span>
         </a>
 
         <ul v-if="hasSubNav && subNavIsVisible" class="side-sub-nav list-reset">
-            <slot></slot>
+            <slot />
         </ul>
     </li>
 </template>
 
 <script>
-    export default {
-        props: {
-            to: {
-                type: Object,
-                default: null
-            },
-
-            section: String,
-
-            label: {
-                type: String,
-                required: true
-            }
+export default {
+    props: {
+        to: {
+            type: Object,
+            default: null,
         },
 
-        data() {
-            return {
-                subNavIsVisible: false
-            }
+        section: {
+            type: String,
+            default: null,
         },
 
-        computed: {
-            currentSection() {
-                let meta = this.$route.matched[this.$route.matched.length - 1].meta;
+        label: {
+            type: String,
+            required: true,
+        },
+    },
 
-                return meta.hasOwnProperty('section')
-                    ? meta.section
-                    : this.$route.matched[0].meta.section;
-            },
+    data() {
+        return {
+            subNavIsVisible: false,
+        };
+    },
 
-            sectionIsActive() {
-                return this.section === this.currentSection;
-            },
+    computed: {
+        currentSection() {
+            let meta = this.$route.matched[this.$route.matched.length - 1].meta;
 
-            isRouterLink() {
-                return !! this.to;
-            },
-
-            hasSubNav() {
-                return !! this.$slots.default;
-            },
-
-            icon() {
-                if (this.hasSubNav) {
-                    return this.subNavIsVisible ? 'angle-up' : 'angle-down';
-                }
-
-                return 'angle-right';
-            }
+            return meta.hasOwnProperty('section')
+                ? meta.section
+                : this.$route.matched[0].meta.section;
         },
 
-        created() {
-            if (this.currentSection === this.section) {
+        sectionIsActive() {
+            return this.section === this.currentSection;
+        },
+
+        isRouterLink() {
+            return !! this.to;
+        },
+
+        hasSubNav() {
+            return !! this.$slots.default;
+        },
+
+        icon() {
+            if (this.hasSubNav) {
+                return this.subNavIsVisible ? 'angle-up' : 'angle-down';
+            }
+
+            return 'angle-right';
+        },
+    },
+
+    watch: {
+        currentSection(section) {
+            if (section === this.section) {
                 this.subNavIsVisible = true;
+            } else {
+                this.subNavIsVisible = false;
             }
         },
+    },
 
-        watch: {
-            currentSection(section) {
-                if (section === this.section) {
-                    this.subNavIsVisible = true;
-                } else {
-                    this.subNavIsVisible = false;
-                }
-            }
-        },
-
-        methods: {
-            toggleSubNav(e) {
-                if (this.hasSubNav) {
-                    this.subNavIsVisible = ! this.subNavIsVisible;
-
-                    e.preventDefault();
-                }
-            }
+    created() {
+        if (this.currentSection === this.section) {
+            this.subNavIsVisible = true;
         }
-    }
+    },
+
+    methods: {
+        toggleSubNav(e) {
+            if (this.hasSubNav) {
+                this.subNavIsVisible = ! this.subNavIsVisible;
+
+                e.preventDefault();
+            }
+        },
+    },
+};
 </script>

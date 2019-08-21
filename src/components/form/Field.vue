@@ -1,27 +1,34 @@
 <template>
     <div class="field" :class="{ 'required': required }">
-        <label :for="input" class="label" v-if="label">{{ label }}</label>
+        <label v-if="label" :for="input" class="label">{{ label }}</label>
 
         <div class="control">
-            <slot></slot>
+            <slot />
         </div>
 
-        <div class="help" v-if="$slots.hasOwnProperty('help')">
-            <slot name="help"></slot>
+        <div v-if="$slots.hasOwnProperty('help')" class="help">
+            <slot name="help" />
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        props: {
-            label: String,
-            input: String,
+export default {
+    props: {
+        label: {
+            type: String,
+            default: null,
+        },
 
-            required: {
-                type: Boolean,
-                default: false
-            }
-        }
-    }
+        input: {
+            type: String,
+            default: null,
+        },
+
+        required: {
+            type: Boolean,
+            default: false,
+        },
+    },
+};
 </script>

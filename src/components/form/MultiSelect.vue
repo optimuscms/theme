@@ -2,64 +2,64 @@
     <div class="select w-full multiselect">
         <vue-select
             :value="newValue"
-            @input="value => $emit('input', value)"
-            :options="options.map(option => option[this.optionValue])"
+            :options="options.map(option => option[optionValue])"
             :multiple="true"
             :custom-label="label"
-        ></vue-select>
+            @input="value => $emit('input', value)"
+        />
     </div>
 </template>
 
 <script>
-    import VueSelect from 'vue-multiselect';
-    
-    export default {
-        components: { VueSelect },
+import VueSelect from 'vue-multiselect';
 
-        props: {
-            options: {
-                type: Array,
-                required: true
-            },
+export default {
+    components: { VueSelect },
 
-            value: {
-                type: Array,
-                required: true
-            },
-
-            optionValue: {
-                type: String,
-                default: 'value'
-            },
-
-            optionLabel: {
-                type: String,
-                default: 'label'
-            }
+    props: {
+        options: {
+            type: Array,
+            required: true,
         },
 
-        computed: {
-            newValue() {
-                if (! this.options.length) {
-                    return [];
-                }
-
-                let optionValues = this.options.map(option => {
-                    return option[this.optionValue]
-                });
-
-                return this.value.filter(value => optionValues.includes(value));
-            }
+        value: {
+            type: Array,
+            required: true,
         },
 
-        methods: {
-            label(value) {
-                let option = this.options.find(option => {
-                    return option[this.optionValue] === value;
-                });
-                
-                return option ? option[this.optionLabel] : false;
+        optionValue: {
+            type: String,
+            default: 'value',
+        },
+
+        optionLabel: {
+            type: String,
+            default: 'label',
+        },
+    },
+
+    computed: {
+        newValue() {
+            if (! this.options.length) {
+                return [];
             }
-        }
-    }
+
+            let optionValues = this.options.map(option => {
+                return option[this.optionValue];
+            });
+
+            return this.value.filter(value => optionValues.includes(value));
+        },
+    },
+
+    methods: {
+        label(value) {
+            let option = this.options.find(option => {
+                return option[this.optionValue] === value;
+            });
+
+            return option ? option[this.optionLabel] : false;
+        },
+    },
+};
 </script>

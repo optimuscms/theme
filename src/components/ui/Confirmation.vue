@@ -1,8 +1,8 @@
 <template>
-    <o-modal :active="isOpen" @close="close">
+    <o-modal :active="isOpen" @close="close" @escape="close">
         <div class="modal-content bg-white rounded max-w-sm">
             <div class="content px-6 py-8 text-center">
-                <slot v-bind="item">
+                <slot :item="item">
                     Are you sure?
                 </slot>
             </div>
@@ -24,42 +24,42 @@
 </template>
 
 <script>
-    import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
-    export default {
-        props: {
-            buttonText: {
-                type: String,
-                default: 'Confirm'
-            },
-
-            buttonClass: {
-                type: String,
-                default: 'green'
-            },
-
-            buttonCancelText: {
-                type: String,
-                default: 'Cancel'
-            },
+export default {
+    props: {
+        buttonText: {
+            type: String,
+            default: 'Confirm',
         },
 
-        computed: {
-            ...mapGetters({
-                isOpen: 'confirmation/isOpen',
-                item: 'confirmation/getItem'
-            })
+        buttonClass: {
+            type: String,
+            default: 'green',
         },
 
-        methods: {
-            ...mapActions({
-                close: 'confirmation/close'
-            }),
+        buttonCancelText: {
+            type: String,
+            default: 'Cancel',
+        },
+    },
 
-            confirm() {
-                this.$emit('confirm', this.item);
-                this.close();
-            }
-        }
-    }
+    computed: {
+        ...mapGetters({
+            isOpen: 'confirmation/isOpen',
+            item: 'confirmation/item',
+        }),
+    },
+
+    methods: {
+        ...mapActions({
+            close: 'confirmation/close',
+        }),
+
+        confirm() {
+            this.$emit('confirm', this.item);
+            this.close();
+        },
+    },
+};
 </script>
