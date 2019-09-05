@@ -29,6 +29,7 @@ import Input from './components/form/Input';
 import Field from './components/form/Field';
 import Select from './components/form/Select';
 import MultiSelect from './components/form/MultiSelect';
+import MetaFields from './components/form/MetaFields';
 
 import Dashboard from './components/layout/Dashboard';
 import SideNavItem from './components/layout/SideNavItem';
@@ -45,6 +46,11 @@ import Search from './components/ui/Search';
 import Tabs from './components/ui/Tabs';
 import Tab from './components/ui/Tab';
 import ThSort from './components/ui/ThSort';
+
+// Import/Export mixins
+export { default as formMixin } from './mixins/form';
+export { default as listingMixin } from './mixins/listing';
+export { default as sortableMixin } from './mixins/sortable';
 
 export default function install(Vue, options = {}) {
     if (options.hasOwnProperty('store')) {
@@ -88,6 +94,7 @@ export default function install(Vue, options = {}) {
     Vue.component('o-form-field', Field);
     Vue.component('o-select', Select);
     Vue.component('o-multi-select', MultiSelect);
+    Vue.component('o-meta-fields', MetaFields);
 
     // Register layout components
     Vue.component('o-dashboard-layout', Dashboard);

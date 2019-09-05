@@ -8,23 +8,37 @@
             </transition>
         </div>
 
-        <div v-else key="content">
+        <transition-group v-else-if="transitionName" :tag="tag" :name="transitionName">
             <slot />
-        </div>
+        </transition-group>
+
+        <component :is="tag" v-else key="content">
+            <slot />
+        </component>
     </transition>
 </template>
 
 <script>
 export default {
     props: {
+        tag: {
+            type: String,
+            default: 'div',
+        },
+
         loading: {
             type: Boolean,
             default: false,
         },
 
-        delay: {
+        spinnerDelay: {
             type: Number,
             default: 350,
+        },
+
+        transitionName: {
+            type: String,
+            default: null,
         },
     },
 
@@ -41,7 +55,7 @@ export default {
                 if (isLoading) {
                     this.timeout = setTimeout(() => {
                         this.showLoader = true;
-                    }, this.delay);
+                    }, this.spinnerDelay);
                 } else {
                     clearTimeout(this.timeout);
                 }
