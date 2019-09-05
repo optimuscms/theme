@@ -86,7 +86,7 @@ export default {
 
         avatar: {
             type: String,
-            default: null,
+            default: undefined,
         },
     },
 
