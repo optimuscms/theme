@@ -5,7 +5,7 @@ module.exports = api => {
         presets: [
             ['@babel/preset-env', {
                 targets: {
-                    esmodules: true,
+                    browsers: [ '> 2%', 'ie 11', 'safari > 9' ],
                 },
             }],
         ],

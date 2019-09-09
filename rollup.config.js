@@ -1,6 +1,6 @@
 import sass from 'node-sass';
 import cssnano from 'cssnano';
-import pkg from '../package.json';
+import pkg from './package.json';
 import vue from 'rollup-plugin-vue';
 import tailwindcss from 'tailwindcss';
 import babel from 'rollup-plugin-babel';
@@ -12,17 +12,13 @@ import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 
 const globals = {
-    'vuex': 'vuex',
-    '@fortawesome/vue-fontawesome': 'vueFontawesome',
-    '@fortawesome/fontawesome-svg-core': 'fontawesomeSvgCore',
-    '@fortawesome/free-solid-svg-icons': 'freeSolidSvgIcons',
+    'vuex': 'Vuex',
+    'vue-multiselect': 'VueMultiselect',
 };
 
 const external = [
     'vuex',
-    '@fortawesome/vue-fontawesome',
-    '@fortawesome/fontawesome-svg-core',
-    '@fortawesome/free-solid-svg-icons',
+    'vue-multiselect',
 ];
 
 const plugins = [
@@ -35,8 +31,10 @@ const plugins = [
     resolve({
         only: [
             'matcher',
-            'vue-multiselect',
             'escape-string-regexp',
+            '@fortawesome/vue-fontawesome',
+            '@fortawesome/fontawesome-svg-core',
+            '@fortawesome/free-solid-svg-icons',
         ],
     }),
     commonjs(),
@@ -44,8 +42,7 @@ const plugins = [
         compileTemplate: true,
     }),
     babel({
-        exclude: 'node_modules/**',
-        configFile: './build/babel.config.js',
+        extensions: ['.js', '.vue'],
     }),
 ];
 
@@ -55,7 +52,7 @@ export default [
         output: [
             {
                 file: pkg.main,
-                name: 'OptimuscmsTheme',
+                name: 'AdminTheme',
                 format: 'umd',
                 globals,
                 exports: 'named',
@@ -68,18 +65,13 @@ export default [
             },
         ],
         external,
-        plugins: [
-            ...plugins,
-            postcss({
-                output: false,
-            }),
-        ],
+        plugins,
     },
     {
         input: 'src/index.js',
         output: {
             file: 'dist/optimus.min.js',
-            name: 'OptimuscmsTheme',
+            name: 'AdminTheme',
             format: 'umd',
             globals,
             exports: 'named',
@@ -88,8 +80,18 @@ export default [
         external,
         plugins: [
             ...plugins,
+            terser(),
+        ],
+    },
+    {
+        input: 'src/sass/index.scss',
+        output: {
+            file: 'dist/optimus.min.css',
+            format: 'es',
+        },
+        plugins: [
             postcss({
-                extract: 'dist/optimus.min.css',
+                extract: true,
                 minimize: true,
                 sourceMap: true,
                 extensions: [ '.sass' ],
@@ -106,7 +108,6 @@ export default [
                     });
                 }),
             }),
-            terser(),
         ],
     },
 ];

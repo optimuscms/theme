@@ -9,7 +9,7 @@
     "author": "Rich Moore <rich@optixsolutions.co.uk>",
     "license": "MIT",
     "scripts": {
-        "build": "yarn clean && rollup --config build/rollup.config.js",
+        "build": "yarn clean && rollup --config rollup.config.js",
         "clean": "rm -f dist/*",
         "lint": "node_modules/eslint/bin/eslint.js --ext .js,.vue src"
     },

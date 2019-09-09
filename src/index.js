@@ -1,6 +1,3 @@
-// Import styles
-import './sass/index.scss';
-
 // Import plugins
 import Icons from './lib/icons';
 import { mapActions, mapGetters } from 'vuex';
