@@ -11,6 +11,7 @@
         "Vue": "readonly",
         "axios": "readonly",
         "module": "readonly",
+        "process": "readonly",
         "require": "readonly"
     },
     "parserOptions": {

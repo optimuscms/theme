@@ -65,11 +65,6 @@ export default {
             type: Object,
             default: null,
         },
-
-        value: {
-            type: Object,
-            required: true,
-        },
     },
 
     data() {

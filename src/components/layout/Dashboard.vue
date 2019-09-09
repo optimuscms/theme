@@ -65,10 +65,10 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
-import Logo from './OptimusLogo';
-import MainHeader from './MainHeader';
-import SideHeader from './SideHeader';
-import SideNav from './SideNav';
+import Logo from './OptimusLogo.vue';
+import MainHeader from './MainHeader.vue';
+import SideHeader from './SideHeader.vue';
+import SideNav from './SideNav.vue';
 
 export default {
     components: {

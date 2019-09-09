@@ -25,7 +25,11 @@ const mutations = {
 
 const actions = {
     setTitle({ commit }, title) {
+        let appName = process.env.MIX_APP_NAME;
+
         commit('setTitle', title);
+
+        document.title = `${title} | ${appName ? appName + ' -' : '' } Optimus`;
     },
 
     toggleSide({ commit, state }) {
