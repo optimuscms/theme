@@ -83,17 +83,22 @@ export default {
     },
 
     watch: {
-        item(item) {
-            this.form = {
-                title: item.title,
-                description: item.description,
-                og_title: item.og_title,
-                og_description: item.og_description,
-                og_image_id: item.og_image ? item.og_image.id : null,
-                additional_tags: item.custom_tags,
-            };
+        item: {
+            handler(item) {
+                if (item) {
+                    this.form = {
+                        title: item.title,
+                        description: item.description,
+                        og_title: item.og_title,
+                        og_description: item.og_description,
+                        og_image_id: item.og_image ? item.og_image.id : null,
+                        additional_tags: item.custom_tags,
+                    };
 
-            this.og_image = item.og_image;
+                    this.og_image = item.og_image;
+                }
+            },
+            immediate: true,
         },
 
         form: {

@@ -2759,16 +2759,21 @@ var script$6 = {
     };
   },
   watch: {
-    item: function item(_item) {
-      this.form = {
-        title: _item.title,
-        description: _item.description,
-        og_title: _item.og_title,
-        og_description: _item.og_description,
-        og_image_id: _item.og_image ? _item.og_image.id : null,
-        additional_tags: _item.custom_tags
-      };
-      this.og_image = _item.og_image;
+    item: {
+      handler: function handler(item) {
+        if (item) {
+          this.form = {
+            title: item.title,
+            description: item.description,
+            og_title: item.og_title,
+            og_description: item.og_description,
+            og_image_id: item.og_image ? item.og_image.id : null,
+            additional_tags: item.custom_tags
+          };
+          this.og_image = item.og_image;
+        }
+      },
+      immediate: true
     },
     form: {
       handler: function handler(form) {
