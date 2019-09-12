@@ -4697,9 +4697,17 @@
             tab.isActive = tab.hash === selectedTab.hash;
           });
           this.activeTabHash = selectedTab.hash;
-          this.$router.push({
-            hash: this.activeTabHash !== this.firstTab.hash ? this.activeTabHash : null
-          });
+          var firstTabIsActive = this.activeTabHash === this.firstTab.hash;
+
+          if (firstTabIsActive && window.location.hash) {
+            this.$router.push({
+              hash: null
+            });
+          } else if (!firstTabIsActive && this.activeTabHash !== window.location.hash) {
+            this.$router.push({
+              hash: this.activeTabHash
+            });
+          }
         }
       }
     }

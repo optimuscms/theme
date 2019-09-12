@@ -60,7 +60,7 @@ export default {
         },
 
         selectTab(selectedTabHash) {
-            let selectedTab = this.findTab(selectedTabHash);
+            const selectedTab = this.findTab(selectedTabHash);
 
             if (selectedTab) {
                 this.tabs.forEach(tab => {
@@ -68,12 +68,17 @@ export default {
                 });
 
                 this.activeTabHash = selectedTab.hash;
+                const firstTabIsActive = this.activeTabHash === this.firstTab.hash;
 
-                this.$router.push({
-                    hash: this.activeTabHash !== this.firstTab.hash
-                        ? this.activeTabHash
-                        : null,
-                });
+                if (firstTabIsActive && window.location.hash) {
+                    this.$router.push({
+                        hash: null,
+                    });
+                } else if (! firstTabIsActive && (this.activeTabHash !== window.location.hash)) {
+                    this.$router.push({
+                        hash: this.activeTabHash,
+                    });
+                }
             }
         },
     },
