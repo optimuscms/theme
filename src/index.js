@@ -37,7 +37,7 @@ import Tab from './components/ui/Tab.vue';
 import ThSort from './components/ui/ThSort.vue';
 
 // Import/Export mixins
-export { default as formMixin } from './mixins/form';
+export { default as formMixin, formHelpersMixin } from './mixins/form';
 export { default as listingMixin } from './mixins/listing';
 export { default as sortableMixin } from './mixins/sortable';
 

@@ -1,4 +1,30 @@
+export const formHelpersMixin = {
+    methods: {
+        accessItem() {
+            return this.item;
+        },
+
+        itemAttributeExists(attribute) {
+            const item = this.accessItem();
+
+            return item && item.hasOwnProperty(attribute);
+        },
+
+        getItemAttribute(attribute, defaultValue = null) {
+            const item = this.accessItem();
+
+            if (this.itemAttributeExists(attribute)) {
+                return item[attribute];
+            }
+
+            return defaultValue;
+        },
+    },
+};
+
 export default {
+    mixins: [ formHelpersMixin ],
+
     props: {
         item: {
             type: Object,
@@ -25,12 +51,6 @@ export default {
     },
 
     methods: {
-        getMedia(group) {
-            return this.item && this.item[group]
-                ? this.item[group]
-                : [];
-        },
-
         submit() {
             this.errors = {};
             this.isProcessing = true;

@@ -4997,7 +4997,29 @@
     staticRenderFns: __vue_staticRenderFns__$o
   }, __vue_inject_styles__$o, __vue_script__$m, __vue_scope_id__$o, __vue_is_functional_template__$o, __vue_module_identifier__$o, undefined, undefined);
 
+  var formHelpersMixin = {
+    methods: {
+      accessItem: function accessItem() {
+        return this.item;
+      },
+      itemAttributeExists: function itemAttributeExists(attribute) {
+        var item = this.accessItem();
+        return item && item.hasOwnProperty(attribute);
+      },
+      getItemAttribute: function getItemAttribute(attribute) {
+        var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+        var item = this.accessItem();
+
+        if (this.itemAttributeExists(attribute)) {
+          return item[attribute];
+        }
+
+        return defaultValue;
+      }
+    }
+  };
   var form = {
+    mixins: [formHelpersMixin],
     props: {
       item: {
         type: Object,
@@ -5020,9 +5042,6 @@
       }
     },
     methods: {
-      getMedia: function getMedia(group) {
-        return this.item && this.item[group] ? this.item[group] : [];
-      },
       submit: function submit() {
         var _this = this;
 
@@ -5236,6 +5255,7 @@
   }
 
   exports.default = install;
+  exports.formHelpersMixin = formHelpersMixin;
   exports.formMixin = form;
   exports.listingMixin = listing;
   exports.sortableMixin = sortable;
