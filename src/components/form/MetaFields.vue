@@ -47,10 +47,10 @@
             </template>
         </o-form-field>
 
-        <!-- Custom Tags -->
-        <o-form-field input="meta_custom_tags" label="Custom Tags">
+        <!-- Additional Tags -->
+        <o-form-field input="meta_additional_tags" label="Custom Tags">
             <o-input
-                id="meta_custom_tags"
+                id="meta_additional_tags"
                 v-model="form.additional_tags"
                 type="textarea"
             />
@@ -92,7 +92,7 @@ export default {
                         og_title: item.og_title,
                         og_description: item.og_description,
                         og_image_id: item.og_image ? item.og_image.id : null,
-                        additional_tags: item.custom_tags,
+                        additional_tags: item.additional_tags,
                     };
 
                     this.og_image = item.og_image;

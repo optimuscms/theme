@@ -2773,7 +2773,7 @@
               og_title: item.og_title,
               og_description: item.og_description,
               og_image_id: item.og_image ? item.og_image.id : null,
-              additional_tags: item.custom_tags
+              additional_tags: item.additional_tags
             };
             this.og_image = item.og_image;
           }
@@ -2887,12 +2887,12 @@
       slot: "help"
     }, [_vm._v("\n            This image will be resized to 1200x630px\n        ")])], 2), _vm._v(" "), _c("o-form-field", {
       attrs: {
-        input: "meta_custom_tags",
+        input: "meta_additional_tags",
         label: "Custom Tags"
       }
     }, [_c("o-input", {
       attrs: {
-        id: "meta_custom_tags",
+        id: "meta_additional_tags",
         type: "textarea"
       },
       model: {
