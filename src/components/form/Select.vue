@@ -4,6 +4,7 @@
             :id="id"
             v-model="newValue"
             :required="required"
+            :disabled="disabled"
         >
             <slot />
         </select>
@@ -15,5 +16,12 @@ import inputMixin from '../../mixins/input';
 
 export default {
     mixins: [ inputMixin ],
+
+    props: {
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+    },
 };
 </script>

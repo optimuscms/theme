@@ -2515,7 +2515,13 @@
 
   //
   var script$4 = {
-    mixins: [inputMixin]
+    mixins: [inputMixin],
+    props: {
+      disabled: {
+        type: Boolean,
+        default: false
+      }
+    }
   };
 
   /* script */
@@ -2540,7 +2546,8 @@
       }],
       attrs: {
         id: _vm.id,
-        required: _vm.required
+        required: _vm.required,
+        disabled: _vm.disabled
       },
       on: {
         change: function change($event) {
