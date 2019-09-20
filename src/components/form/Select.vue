@@ -1,6 +1,10 @@
 <template>
     <div class="select w-full">
-        <select :id="id" v-model="newValue" :required="required">
+        <select
+            :id="id"
+            v-model="newValue"
+            :required="required"
+        >
             <slot />
         </select>
     </div>

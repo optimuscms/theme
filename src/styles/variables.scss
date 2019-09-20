@@ -2,8 +2,8 @@ $body-color: theme('colors.grey.700');
 $link-color: theme('colors.blue.500');
 
 $button-color: theme('colors.grey.700');
-$button-font-weight: theme('fontWeight.bold');
 $button-static-color: theme('colors.grey.600');
+$button-font-weight: theme('fontWeight.semibold');
 
 $button-border-width: 1px;
 $button-border-color: theme('colors.grey.400');
@@ -17,7 +17,7 @@ $field-margin: theme('margin.8');
 
 $label-color: theme('colors.blue.500');
 $label-font-size: theme('fontSize.sm');
-$label-font-weight: theme('fontWeight.bold');
+$label-font-weight: theme('fontWeight.semibold');
 
 $input-color: theme('colors.grey.700');
 $input-hover-color: theme('colors.grey.800');

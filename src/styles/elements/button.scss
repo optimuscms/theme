@@ -1,8 +1,6 @@
 $button-colors: blue coral green red;
 
 .button {
-    text-transform: uppercase;
-
     @each $color in $button-colors {
         &.#{"" + $color} {
             color: theme('colors.white');

@@ -84,7 +84,7 @@ export default [
         ],
     },
     {
-        input: 'src/sass/index.scss',
+        input: 'src/styles/index.scss',
         output: {
             file: 'dist/optimus.min.css',
             format: 'es',
@@ -98,7 +98,7 @@ export default [
                 plugins: [
                     cssnano(),
                     autoprefixer,
-                    tailwindcss('./src/sass/tailwind.config.js'),
+                    tailwindcss('./src/styles/tailwind.config.js'),
                 ],
                 preprocessor: (content, id) => new Promise(resolve => {
                     const result = sass.renderSync({ file: id });
