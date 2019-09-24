@@ -7,9 +7,12 @@
             :type="type"
             class="checkbox"
             :value="checkedValue"
+            @change="$event => $emit('change', $event)"
         >
 
-        <label :for="id">{{ label }}</label>
+        <label :for="id">
+            {{ label }}
+        </label>
     </div>
 </template>
 

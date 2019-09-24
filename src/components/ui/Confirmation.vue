@@ -12,12 +12,16 @@
                     class="button"
                     :class="buttonClass"
                     @click="confirm"
-                >{{ buttonText }}</a>
+                >
+                    {{ buttonText }}
+                </a>
 
                 <a
                     class="button"
                     @click="close"
-                >{{ buttonCancelText }}</a>
+                >
+                    {{ buttonCancelText }}
+                </a>
             </div>
         </div>
     </o-modal>

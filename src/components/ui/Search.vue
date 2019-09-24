@@ -1,6 +1,8 @@
 <template>
     <form @submit.prevent="submit">
-        <label for="search" class="hidden">Search</label>
+        <label for="search" class="hidden">
+            Search
+        </label>
 
         <div class="field addons">
             <div class="control flex-grow">

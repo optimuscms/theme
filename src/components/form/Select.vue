@@ -5,6 +5,7 @@
             v-model="newValue"
             :required="required"
             :disabled="disabled"
+            @change="$event => $emit('change', $event)"
         >
             <slot />
         </select>

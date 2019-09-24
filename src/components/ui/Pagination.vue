@@ -4,27 +4,35 @@
             class="pagination-previous"
             :disabled="! hasPreviousPage"
             @click="changePage(previousPage)"
-        >Prev</a>
+        >
+            Prev
+        </a>
 
         <a
             class="pagination-next"
             :disabled="! hasNextPage"
             @click="changePage(nextPage)"
-        >Next</a>
+        >
+            Next
+        </a>
 
         <ul class="pagination-list">
             <li v-for="page in pages" :key="page">
                 <span
                     v-if="page === seperator"
                     class="pagination-ellipsis"
-                >{{ seperator }}</span>
+                >
+                    {{ seperator }}
+                </span>
 
                 <a
                     v-else
                     class="pagination-link"
                     :class="{ 'current': page === currentPage }"
                     @click="changePage(page + 1)"
-                >{{ page + 1 }}</a>
+                >
+                    {{ page + 1 }}
+                </a>
             </li>
         </ul>
     </nav>

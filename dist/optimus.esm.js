@@ -1,5 +1,6 @@
 import { mapGetters, mapActions } from 'vuex';
 import VueSelect from 'vue-multiselect';
+import isEqual from 'lodash/isEqual';
 
 function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -2226,7 +2227,7 @@ var __vue_render__$1 = function __vue_render__() {
       checked: Array.isArray(_vm.newValue) ? _vm._i(_vm.newValue, _vm.checkedValue) > -1 : _vm.newValue
     },
     on: {
-      change: function change($event) {
+      change: [function ($event) {
         var $$a = _vm.newValue,
             $$el = $event.target,
             $$c = $$el.checked ? true : false;
@@ -2243,7 +2244,9 @@ var __vue_render__$1 = function __vue_render__() {
         } else {
           _vm.newValue = $$c;
         }
-      }
+      }, function ($event) {
+        return _vm.$emit("change", $event);
+      }]
     }
   }) : _vm.type === "radio" ? _c("input", {
     directives: [{
@@ -2263,9 +2266,11 @@ var __vue_render__$1 = function __vue_render__() {
       checked: _vm._q(_vm.newValue, _vm.checkedValue)
     },
     on: {
-      change: function change($event) {
+      change: [function ($event) {
         _vm.newValue = _vm.checkedValue;
-      }
+      }, function ($event) {
+        return _vm.$emit("change", $event);
+      }]
     }
   }) : _c("input", {
     directives: [{
@@ -2284,6 +2289,9 @@ var __vue_render__$1 = function __vue_render__() {
       value: _vm.checkedValue
     }, "value", _vm.newValue),
     on: {
+      change: function change($event) {
+        return _vm.$emit("change", $event);
+      },
       input: function input($event) {
         if ($event.target.composing) {
           return;
@@ -2296,7 +2304,7 @@ var __vue_render__$1 = function __vue_render__() {
     attrs: {
       for: _vm.id
     }
-  }, [_vm._v(_vm._s(_vm.label))])]);
+  }, [_vm._v("\n        " + _vm._s(_vm.label) + "\n    ")])]);
 };
 
 var __vue_staticRenderFns__$1 = [];
@@ -2440,6 +2448,8 @@ var Input = normalizeComponent_1({
 //
 //
 //
+//
+//
 var script$3 = {
   props: {
     label: {
@@ -2478,7 +2488,7 @@ var __vue_render__$3 = function __vue_render__() {
     attrs: {
       for: _vm.input
     }
-  }, [_vm._v(_vm._s(_vm.label))]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n        " + _vm._s(_vm.label) + "\n    ")]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "control"
   }, [_vm._t("default")], 2), _vm._v(" "), _vm.$slots.hasOwnProperty("help") ? _c("div", {
     staticClass: "help"
@@ -2545,7 +2555,7 @@ var __vue_render__$4 = function __vue_render__() {
       disabled: _vm.disabled
     },
     on: {
-      change: function change($event) {
+      change: [function ($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
           return o.selected;
         }).map(function (o) {
@@ -2553,7 +2563,9 @@ var __vue_render__$4 = function __vue_render__() {
           return val;
         });
         _vm.newValue = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }
+      }, function ($event) {
+        return _vm.$emit("change", $event);
+      }]
     }
   }, [_vm._t("default")], 2)]);
 };
@@ -3669,7 +3681,7 @@ var __vue_render__$e = function __vue_render__() {
     on: {
       click: _vm.confirm
     }
-  }, [_vm._v(_vm._s(_vm.buttonText))])])])]);
+  }, [_vm._v("\n                " + _vm._s(_vm.buttonText) + "\n            ")])])])]);
 };
 
 var __vue_staticRenderFns__$e = [];
@@ -3757,12 +3769,12 @@ var __vue_render__$f = function __vue_render__() {
     on: {
       click: _vm.confirm
     }
-  }, [_vm._v(_vm._s(_vm.buttonText))]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                " + _vm._s(_vm.buttonText) + "\n            ")]), _vm._v(" "), _c("a", {
     staticClass: "button",
     on: {
       click: _vm.close
     }
-  }, [_vm._v(_vm._s(_vm.buttonCancelText))])])])]);
+  }, [_vm._v("\n                " + _vm._s(_vm.buttonCancelText) + "\n            ")])])])]);
 };
 
 var __vue_staticRenderFns__$f = [];
@@ -3788,6 +3800,10 @@ var Confirmation = normalizeComponent_1({
   staticRenderFns: __vue_staticRenderFns__$f
 }, __vue_inject_styles__$f, __vue_script__$d, __vue_scope_id__$f, __vue_is_functional_template__$f, __vue_module_identifier__$f, undefined, undefined);
 
+//
+//
+//
+//
 //
 //
 //
@@ -3963,26 +3979,26 @@ var __vue_render__$g = function __vue_render__() {
   }, [_vm._t("default", [_vm.defaultOption ? _c("a", {
     staticClass: "dropdown-item",
     class: {
-      active: !_vm.value
+      active: [null, undefined].includes(_vm.value)
     },
     on: {
       click: function click($event) {
         _vm.newValue = null;
       }
     }
-  }, [_vm._v(_vm._s(_vm.placeholder))]) : _vm._e(), _vm._v(" "), _vm._l(_vm.options, function (option) {
+  }, [_vm._v("\n                        " + _vm._s(_vm.placeholder) + "\n                    ")]) : _vm._e(), _vm._v(" "), _vm._l(_vm.options, function (option) {
     return [_vm._t("option", [_c("a", {
       key: option.value,
       staticClass: "dropdown-item",
       class: {
-        active: option.value == _vm.value
+        active: option.value === _vm.value
       },
       on: {
         click: function click($event) {
           _vm.newValue = option.value;
         }
       }
-    }, [_vm._v(_vm._s(option.label))])], {
+    }, [_vm._v("\n                                " + _vm._s(option.label) + "\n                            ")])], {
       option: option
     })];
   })])], 2)])])]);
@@ -4348,6 +4364,14 @@ var Notification = normalizeComponent_1({
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var script$i = {
   props: {
     options: {
@@ -4457,7 +4481,7 @@ var __vue_render__$k = function __vue_render__() {
         return _vm.changePage(_vm.previousPage);
       }
     }
-  }, [_vm._v("Prev")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n        Prev\n    ")]), _vm._v(" "), _c("a", {
     staticClass: "pagination-next",
     attrs: {
       disabled: !_vm.hasNextPage
@@ -4467,14 +4491,14 @@ var __vue_render__$k = function __vue_render__() {
         return _vm.changePage(_vm.nextPage);
       }
     }
-  }, [_vm._v("Next")]), _vm._v(" "), _c("ul", {
+  }, [_vm._v("\n        Next\n    ")]), _vm._v(" "), _c("ul", {
     staticClass: "pagination-list"
   }, _vm._l(_vm.pages, function (page) {
     return _c("li", {
       key: page
     }, [page === _vm.seperator ? _c("span", {
       staticClass: "pagination-ellipsis"
-    }, [_vm._v(_vm._s(_vm.seperator))]) : _c("a", {
+    }, [_vm._v("\n                " + _vm._s(_vm.seperator) + "\n            ")]) : _c("a", {
       staticClass: "pagination-link",
       class: {
         current: page === _vm.currentPage
@@ -4484,7 +4508,7 @@ var __vue_render__$k = function __vue_render__() {
           return _vm.changePage(page + 1);
         }
       }
-    }, [_vm._v(_vm._s(page + 1))])]);
+    }, [_vm._v("\n                " + _vm._s(page + 1) + "\n            ")])]);
   }), 0)]) : _vm._e();
 };
 
@@ -4511,6 +4535,8 @@ var Pagination = normalizeComponent_1({
   staticRenderFns: __vue_staticRenderFns__$k
 }, __vue_inject_styles__$k, __vue_script__$i, __vue_scope_id__$k, __vue_is_functional_template__$k, __vue_module_identifier__$k, undefined, undefined);
 
+//
+//
 //
 //
 //
@@ -4582,7 +4608,7 @@ var __vue_render__$l = function __vue_render__() {
     attrs: {
       for: "search"
     }
-  }, [_vm._v("Search")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n        Search\n    ")]), _vm._v(" "), _c("div", {
     staticClass: "field addons"
   }, [_c("div", {
     staticClass: "control flex-grow"
@@ -4635,6 +4661,8 @@ var Search = normalizeComponent_1({
   staticRenderFns: __vue_staticRenderFns__$l
 }, __vue_inject_styles__$l, __vue_script__$j, __vue_scope_id__$l, __vue_is_functional_template__$l, __vue_module_identifier__$l, undefined, undefined);
 
+//
+//
 //
 //
 //
@@ -4755,7 +4783,7 @@ var __vue_render__$m = function __vue_render__() {
           return _vm.selectTab(tab.hash);
         }
       }
-    }, [_vm._v(_vm._s(tab.name))])]);
+    }, [_vm._v("\n                        " + _vm._s(tab.name) + "\n                    ")])]);
   }), 0)])], null, _vm.tabs), _vm._v(" "), _vm._t("default")], 2);
 };
 
@@ -5107,7 +5135,7 @@ var listing = {
 
       var query = {};
       Object.keys(this.filters).forEach(function (key) {
-        if (_this.routeQuery[key]) {
+        if (_this.hasValue(_this.routeQuery, key)) {
           query[key] = _this.routeQuery[key];
         }
       });
@@ -5121,15 +5149,20 @@ var listing = {
     },
     filters: {
       handler: function handler(filters) {
+        var _this2 = this;
+
         var query = {};
         Object.keys(filters).forEach(function (key) {
-          if (filters[key]) {
+          if (_this2.hasValue(filters, key)) {
             query[key] = filters[key];
           }
         });
-        this.$router.push({
-          query: query
-        });
+
+        if (!isEqual(query, this.routeQuery)) {
+          this.$router.push({
+            query: query
+          });
+        }
       },
       deep: true
     }
@@ -5139,14 +5172,17 @@ var listing = {
     this.setFilters(this.query);
   },
   methods: {
+    hasValue: function hasValue(object, key) {
+      return object[key] !== null && object[key] !== undefined;
+    },
     setFilters: function setFilters(query) {
-      var _this2 = this;
+      var _this3 = this;
 
       Object.keys(this.filters).forEach(function (key) {
-        if (query.hasOwnProperty(key) && query[key]) {
-          _this2.filters[key] = query[key];
+        if (query.hasOwnProperty(key) && _this3.hasValue(query, key)) {
+          _this3.filters[key] = query[key];
         } else {
-          _this2.filters[key] = _this2.initialFilters[key];
+          _this3.filters[key] = _this3.initialFilters[key];
         }
       });
     },

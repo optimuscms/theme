@@ -2,6 +2,10 @@
     thead,
     tbody {
         tr {
+            th {
+                font-weight: theme('fontWeight.semibold');
+            }
+
             th,
             td {
                 &.sort-handle {

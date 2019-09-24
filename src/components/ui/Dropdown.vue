@@ -19,18 +19,22 @@
                         <a
                             v-if="defaultOption"
                             class="dropdown-item"
-                            :class="{ 'active': ! value }"
+                            :class="{ 'active': [ null, undefined ].includes(value) }"
                             @click="newValue = null"
-                        >{{ placeholder }}</a>
+                        >
+                            {{ placeholder }}
+                        </a>
 
                         <template v-for="option in options">
                             <slot name="option" :option="option">
                                 <a
                                     :key="option.value"
                                     class="dropdown-item"
-                                    :class="{ 'active': option.value == value }"
+                                    :class="{ 'active': option.value === value }"
                                     @click="newValue = option.value"
-                                >{{ option.label }}</a>
+                                >
+                                    {{ option.label }}
+                                </a>
                             </slot>
                         </template>
                     </slot>

@@ -1,6 +1,8 @@
 <template>
     <div class="field" :class="{ 'required': required }">
-        <label v-if="label" :for="input" class="label">{{ label }}</label>
+        <label v-if="label" :for="input" class="label">
+            {{ label }}
+        </label>
 
         <div class="control">
             <slot />

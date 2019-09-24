@@ -1,3 +1,5 @@
+import isEqual from 'lodash/isEqual';
+
 export default {
     filters: {
         truncate(string, length = 150) {
@@ -25,7 +27,7 @@ export default {
             let query = {};
 
             Object.keys(this.filters).forEach(key => {
-                if (this.routeQuery[key]) {
+                if (this.hasValue(this.routeQuery, key)) {
                     query[key] = this.routeQuery[key];
                 }
             });
@@ -45,12 +47,14 @@ export default {
                 let query = {};
 
                 Object.keys(filters).forEach(key => {
-                    if (filters[key]) {
+                    if (this.hasValue(filters, key)) {
                         query[key] = filters[key];
                     }
                 });
 
-                this.$router.push({ query });
+                if (! isEqual(query, this.routeQuery)) {
+                    this.$router.push({ query });
+                }
             },
             deep: true,
         },
@@ -63,9 +67,13 @@ export default {
     },
 
     methods: {
+        hasValue(object, key) {
+            return object[key] !== null && object[key] !== undefined;
+        },
+
         setFilters(query) {
             Object.keys(this.filters).forEach(key => {
-                if (query.hasOwnProperty(key) && query[key]) {
+                if (query.hasOwnProperty(key) && this.hasValue(query, key)) {
                     this.filters[key] = query[key];
                 } else {
                     this.filters[key] = this.initialFilters[key];

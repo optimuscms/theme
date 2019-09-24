@@ -13,7 +13,9 @@
                             class="button w-full"
                             :class="{ 'blue': tab.isActive }"
                             @click="selectTab(tab.hash)"
-                        >{{ tab.name }}</a>
+                        >
+                            {{ tab.name }}
+                        </a>
                     </div>
                 </div>
             </div>

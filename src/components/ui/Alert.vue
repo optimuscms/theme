@@ -10,7 +10,9 @@
                     class="button w-full sm:w-1/2"
                     :class="buttonClass"
                     @click="confirm"
-                >{{ buttonText }}</a>
+                >
+                    {{ buttonText }}
+                </a>
             </div>
         </div>
     </o-modal>
