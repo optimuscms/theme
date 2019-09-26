@@ -4052,6 +4052,13 @@
   //
   //
   //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   var script$f = {
     props: {
       tag: {
@@ -4113,7 +4120,8 @@
       }
     }, [_vm.loading ? _c("div", {
       key: "loader",
-      staticClass: "flex items-center justify-center p-8"
+      staticClass: "p-8",
+      class: _vm.tag === "tbody" ? "table-loader text-center" : "flex items-center justify-center"
     }, [_c("transition", {
       attrs: {
         name: "fade"

@@ -1,6 +1,13 @@
 <template>
     <transition name="loader" mode="out-in">
-        <div v-if="loading" key="loader" class="flex items-center justify-center p-8">
+        <div
+            v-if="loading"
+            key="loader"
+            class="p-8"
+            :class="tag === 'tbody'
+                ? 'table-loader text-center'
+                : 'flex items-center justify-center'"
+        >
             <transition name="fade">
                 <div v-if="showLoader" class="icon">
                     <icon icon="spinner" spin size="lg" />
