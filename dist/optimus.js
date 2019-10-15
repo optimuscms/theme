@@ -1,11 +1,10 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vuex'), require('vue-multiselect'), require('lodash/isEqual')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'vuex', 'vue-multiselect', 'lodash/isEqual'], factory) :
-  (global = global || self, factory(global.AdminTheme = {}, global.Vuex, global.VueMultiselect, global.isEqual));
-}(this, function (exports, vuex, VueSelect, isEqual) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vuex'), require('vue-multiselect'), require('lodash')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'vuex', 'vue-multiselect', 'lodash'], factory) :
+  (global = global || self, factory(global.AdminTheme = {}, global.Vuex, global.VueMultiselect, global.lodash));
+}(this, function (exports, vuex, VueSelect, lodash) { 'use strict';
 
   VueSelect = VueSelect && VueSelect.hasOwnProperty('default') ? VueSelect['default'] : VueSelect;
-  isEqual = isEqual && isEqual.hasOwnProperty('default') ? isEqual['default'] : isEqual;
 
   function _typeof(obj) {
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -2892,7 +2891,7 @@
       attrs: {
         id: "meta_og_image",
         media: _vm.og_image,
-        preview: "",
+        "show-preview": "",
         "accepted-extensions": "image"
       },
       model: {
@@ -5171,7 +5170,7 @@
             }
           });
 
-          if (!isEqual(query, this.routeQuery)) {
+          if (!lodash.isEqual(query, this.routeQuery)) {
             this.$router.push({
               query: query
             });
@@ -5186,7 +5185,7 @@
     },
     methods: {
       hasValue: function hasValue(object, key) {
-        return object[key] !== null && object[key] !== undefined;
+        return object[key] !== '' && object[key] !== null && object[key] !== undefined;
       },
       setFilters: function setFilters(query) {
         var _this3 = this;

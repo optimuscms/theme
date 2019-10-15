@@ -13,11 +13,13 @@ import resolve from 'rollup-plugin-node-resolve';
 
 const globals = {
     'vuex': 'Vuex',
+    'lodash': 'lodash',
     'vue-multiselect': 'VueMultiselect',
 };
 
 const external = [
     'vuex',
+    'lodash',
     'vue-multiselect',
 ];
 
@@ -37,7 +39,11 @@ const plugins = [
             '@fortawesome/free-solid-svg-icons',
         ],
     }),
-    commonjs(),
+    commonjs({
+        namedExports: {
+            'node_modules/lodash/lodash.js': [ 'isEqual' ],
+        },
+    }),
     vue({
         compileTemplate: true,
     }),

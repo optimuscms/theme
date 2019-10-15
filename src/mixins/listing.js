@@ -1,4 +1,4 @@
-import isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash';
 
 export default {
     filters: {
@@ -68,7 +68,9 @@ export default {
 
     methods: {
         hasValue(object, key) {
-            return object[key] !== null && object[key] !== undefined;
+            return object[key] !== ''
+                && object[key] !== null
+                && object[key] !== undefined;
         },
 
         setFilters(query) {

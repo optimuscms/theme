@@ -38,7 +38,7 @@
                 id="meta_og_image"
                 v-model="form.og_image_id"
                 :media="og_image"
-                preview
+                show-preview
                 accepted-extensions="image"
             />
 

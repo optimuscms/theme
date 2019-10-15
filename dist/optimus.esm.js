@@ -1,6 +1,6 @@
 import { mapGetters, mapActions } from 'vuex';
 import VueSelect from 'vue-multiselect';
-import isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash';
 
 function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -2887,7 +2887,7 @@ var __vue_render__$6 = function __vue_render__() {
     attrs: {
       id: "meta_og_image",
       media: _vm.og_image,
-      preview: "",
+      "show-preview": "",
       "accepted-extensions": "image"
     },
     model: {
@@ -5181,7 +5181,7 @@ var listing = {
   },
   methods: {
     hasValue: function hasValue(object, key) {
-      return object[key] !== null && object[key] !== undefined;
+      return object[key] !== '' && object[key] !== null && object[key] !== undefined;
     },
     setFilters: function setFilters(query) {
       var _this3 = this;
