@@ -3850,6 +3850,8 @@
   //
   //
   //
+  //
+  //
   var script$e = {
     props: {
       value: {
@@ -3959,9 +3961,11 @@
         }
       }
     }, [_vm._t("button", [_c("span", {
-      staticClass: "button",
+      staticClass: "button max-w-xs",
       class: _vm.buttonClass
-    }, [_c("span", [_vm._v(_vm._s(_vm.buttonText))]), _vm._v(" "), _c("span", {
+    }, [_c("span", {
+      staticClass: "truncate"
+    }, [_vm._v("\n                    " + _vm._s(_vm.buttonText) + "\n                ")]), _vm._v(" "), _c("span", {
       staticClass: "icon"
     }, [_c("icon", {
       attrs: {

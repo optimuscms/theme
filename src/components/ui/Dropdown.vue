@@ -2,8 +2,10 @@
     <div ref="dropdown" class="dropdown" :class="{ 'open': isOpen }">
         <div class="cursor-pointer" @click="isOpen = ! isOpen">
             <slot name="button" :is-open="isOpen">
-                <span class="button" :class="buttonClass">
-                    <span>{{ buttonText }}</span>
+                <span class="button max-w-xs" :class="buttonClass">
+                    <span class="truncate">
+                        {{ buttonText }}
+                    </span>
 
                     <span class="icon">
                         <icon :icon="icon" />
