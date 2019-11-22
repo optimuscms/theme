@@ -1,4 +1,6 @@
 .table {
+    white-space: normal;
+
     thead,
     tbody {
         tr {
@@ -8,13 +10,20 @@
 
             th,
             td {
+                padding: 1.25rem;
+                vertical-align: top;
+
                 &.sort-handle {
                     cursor: grab;
                     text-align: center;
                 }
     
                 &.actions {
+                    padding-top: 0;
+                    padding-bottom: 0;
                     text-align: center;
+                    white-space: nowrap;
+                    vertical-align: middle;
     
                     a {
                         color: theme('colors.grey.400');
