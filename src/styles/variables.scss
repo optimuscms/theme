@@ -22,6 +22,9 @@ $label-font-weight: theme('fontWeight.semibold');
 $input-color: theme('colors.grey.700');
 $input-hover-color: theme('colors.grey.800');
 
+$select-placeholder-color: theme('colors.grey.700');
+$select-hover-placeholder-color: theme('colors.grey.800');
+
 $checkbox-checked-color: theme('colors.coral.500');
 $checkbox-checked-hover-color: theme('colors.coral.600');
 $checkbox-checked-focus-color: theme('colors.coral.600');
