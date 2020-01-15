@@ -3981,9 +3981,9 @@
         }
       }
     }, [_c("div", {
-      staticClass: "dropdown-scroll"
-    }, [_c("div", {
       staticClass: "dropdown-content"
+    }, [_c("div", {
+      staticClass: "dropdown-scroll"
     }, [_vm._t("default", [_vm.defaultOption ? _c("a", {
       staticClass: "dropdown-item",
       class: {

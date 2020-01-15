@@ -15,8 +15,8 @@
         </div>
 
         <div class="dropdown-menu max-w-xs" @click="isOpen = false">
-            <div class="dropdown-scroll">
-                <div class="dropdown-content">
+            <div class="dropdown-content">
+                <div class="dropdown-scroll">
                     <slot>
                         <a
                             v-if="defaultOption"

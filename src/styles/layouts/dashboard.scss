@@ -41,7 +41,23 @@
     .side-content {
         flex-grow: 1;
         overflow: auto;
+        scrollbar-width: thin;
         flex-direction: column;
+        scrollbar-color: rgba(0, 0, 0, 0.6) theme('colors.blue.700');
+
+        &::-webkit-scrollbar {
+            width: 11px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: theme('colors.blue.700');
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 3px solid theme('colors.blue.700');
+        }
     }
 
     @screen lg {
