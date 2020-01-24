@@ -14,13 +14,13 @@ import resolve from 'rollup-plugin-node-resolve';
 const globals = {
     'vuex': 'Vuex',
     'lodash': 'lodash',
-    'vue-multiselect': 'VueMultiselect',
+    '@optix/vue-select': 'VueSelect',
 };
 
 const external = [
     'vuex',
     'lodash',
-    'vue-multiselect',
+    'VueSelect',
 ];
 
 const plugins = [
@@ -37,6 +37,7 @@ const plugins = [
             '@fortawesome/vue-fontawesome',
             '@fortawesome/fontawesome-svg-core',
             '@fortawesome/free-solid-svg-icons',
+            '@optix/vue-select',
         ],
     }),
     commonjs({

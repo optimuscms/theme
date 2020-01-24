@@ -716,6 +716,13 @@
   dependencies:
     tailwindcss "^1.0"
 
+"@optix/vue-select@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@optix/vue-select/-/vue-select-0.0.1.tgz#f834a38e53ad1a3b940776eafc32bb2e12cb5359"
+  integrity sha512-2XyRC8eTjkNMFdOfJCixP/f4Z0MZ0y/YP0Xc/4jS2Yp1vUgNTM2+QcNc+sGcdSUlOg1J+6arOH3FgjLUs7NOPw==
+  dependencies:
+    vue "^2.6.10"
+
 "@types/babel-types@*", "@types/babel-types@^7.0.0":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@types/babel-types/-/babel-types-7.0.7.tgz#667eb1640e8039436028055737d2b9986ee336e3"
