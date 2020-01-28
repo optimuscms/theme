@@ -19,7 +19,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.3.1",
         "@fortawesome/vue-fontawesome": "^0.1.1",
         "@optix/sass": "^0.2.4",
-        "@optix/vue-select": "^0.0.3",
+        "@optix/vue-select": "^0.0.4",
         "lodash": "^4.17.15",
         "matcher": "^2.0.0",
         "tailwindcss": "^1.0",

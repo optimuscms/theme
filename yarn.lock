@@ -746,10 +746,10 @@
   dependencies:
     tailwindcss "^1.0"
 
-"@optix/vue-select@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@optix/vue-select/-/vue-select-0.0.3.tgz#6e1932e6082da852c5339a47a3a7682901266a15"
-  integrity sha512-4vb4IvAqRSyGPQNz1Q9R07TXMN0c7LZnTEJX0QOHr2TtZnMzWxL8e11Ctj99UnuEfk1yTy1IIn1A8tA2jkTL+A==
+"@optix/vue-select@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@optix/vue-select/-/vue-select-0.0.4.tgz#9ae69cc29fdd726571f0ce4db4b56ccbbfd8ac12"
+  integrity sha512-gbVCE/rdMdxmufgQICW1X4PDRWKVu8E0WFh3S1fX0E8XhOJy8dmEBKRStQSYJ/gIOozcVXR/wfCcgoZCmAfUsw==
   dependencies:
     vue "^2.6.10"
 
