@@ -739,10 +739,10 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/vue-fontawesome/-/vue-fontawesome-0.1.9.tgz#d3af6d4e50f337327de90447fe35fa1e117a2fbe"
   integrity sha512-h/emhmZz+DfB2zOGLWawNwXq82UYhn9waTfUjLLmeaIqtnIyNt6kYlpQT/vzJjLZRDRvY2IEJAh1di5qKpKVpA==
 
-"@optix/sass@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@optix/sass/-/sass-0.2.4.tgz#9b1e5133640de294bc8ff62f15d689276cb57b45"
-  integrity sha512-Pn2BbS+UPy68Yy9NnzrL0aX7XV9uI+Px76zuglwHYiFUQRSfhU4EpzVP1NVNH8heA07kUru8Kd6Q6zLVJn477A==
+"@optix/sass@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@optix/sass/-/sass-0.2.5.tgz#126ea7d79d3e5e44d9af76cb5bd59ad80d2b123d"
+  integrity sha512-rmzdHCvTZ9NlrdplxjTQi4/bEFedBt0twjqKMRxaX1LJuVBK0F2qBONg+F28vX2D3NUrqUXlJ629348BIE2ufA==
   dependencies:
     tailwindcss "^1.0"
 
