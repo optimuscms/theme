@@ -1,0 +1,32 @@
+.menu-item-wrap {
+    + .menu-item-wrap {
+        margin-top: 1rem;
+    }
+}
+
+.menu-item {
+    padding: 1rem;
+    box-shadow: theme('boxShadow.lg');
+    border: solid 1px theme('colors.grey.400');
+    border-radius: theme('borderRadius.default');
+
+    &.selectable {
+        &:not(.disabled) {
+            cursor: pointer;
+
+            &:hover {
+                color: theme('colors.white');
+                background-color: theme('colors.coral.500');
+            }
+        }
+
+        &.disabled {
+            color: theme('colors.grey.400');
+        }
+
+        a {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+}
