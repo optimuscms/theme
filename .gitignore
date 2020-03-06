@@ -1,5 +1,8 @@
-/.yalc
-/dist/mix-manifest.json
+/.idea
+/.vscode
 /node_modules
-yalc.lock
+.DS_Store
+npm-debug.log
+package-lock.json
+yarn.lock
 yarn-error.log
