@@ -1,5 +1,6 @@
 @import '~@optix/vue-select/src/styles/variables/_index';
 
+$vs-font-family: theme('fontFamily.sans');
 $vs-text-size: $body-font-size;
 $vs-text-color: $input-color;
 $vs-select-min-height: $control-height;
