@@ -1,6 +1,13 @@
 <template>
-    <div class="field" :class="{ 'required': required }">
-        <label v-if="label" :for="input" class="label">
+    <div
+        class="field"
+        :class="{ 'required': required }"
+    >
+        <label
+            v-if="label"
+            :for="input"
+            class="label"
+        >
             {{ label }}
         </label>
 
@@ -8,7 +15,10 @@
             <slot />
         </div>
 
-        <div v-if="$slots.hasOwnProperty('help')" class="help">
+        <div
+            v-if="$slots.hasOwnProperty('help')"
+            class="help"
+        >
             <slot name="help" />
         </div>
     </div>

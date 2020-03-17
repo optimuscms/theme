@@ -14,11 +14,15 @@
                 <logo class="w-16" />
 
                 <div class="title text-3xl uppercase">
-                    <strong>Optimus</strong>
+                    <strong>
+                        Optimus
+                    </strong>
                 </div>
 
                 <div class="subtitle text-coral-500">
-                    <i>loading...</i>
+                    <i>
+                        loading...
+                    </i>
                 </div>
             </div>
         </div>
@@ -31,7 +35,10 @@
         >
             <transition name="side">
                 <div v-show="! loading" class="side bg-blue-700">
-                    <a class="side-toggle bg-blue-700 lg:hidden" @click="toggleSide">
+                    <a
+                        class="side-toggle bg-blue-700 lg:hidden"
+                        @click="toggleSide"
+                    >
                         <span class="dots">
                             <i />
                         </span>

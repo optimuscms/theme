@@ -1,5 +1,9 @@
 <template>
-    <router-link :to="to" tag="li" :class="{ 'active': isActive }">
+    <router-link
+        :to="to"
+        tag="li"
+        :class="{ 'active': isActive }"
+    >
         <a>
             <slot />
         </a>
@@ -19,7 +23,8 @@ export default {
         isActive() {
             let route = this.$route.matched[this.$route.matched.length - 1];
 
-            return this.to.hasOwnProperty('name') && route.name === this.to.name;
+            return this.to.hasOwnProperty('name')
+                && route.name === this.to.name;
         },
     },
 };

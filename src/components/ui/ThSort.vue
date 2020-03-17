@@ -1,11 +1,17 @@
 <template>
     <th>
-        <a class="inline-flex items-center" @click="sort">
+        <a
+            class="inline-flex items-center"
+            @click="sort"
+        >
             <span class="select-none">
                 <slot />
             </span>
 
-            <span class="icon ml-4" :class="{ 'opacity-50': ! direction }">
+            <span
+                class="icon ml-4"
+                :class="{ 'opacity-50': ! direction }"
+            >
                 <icon :icon="icon" />
             </span>
         </a>

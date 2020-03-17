@@ -10,16 +10,28 @@
         >
             <transition name="fade">
                 <div v-if="showLoader" class="icon">
-                    <icon icon="spinner" spin size="lg" />
+                    <icon
+                        spin
+                        icon="spinner"
+                        size="lg"
+                    />
                 </div>
             </transition>
         </div>
 
-        <transition-group v-else-if="transitionName" :tag="tag" :name="transitionName">
+        <transition-group
+            v-else-if="transitionName"
+            :tag="tag"
+            :name="transitionName"
+        >
             <slot />
         </transition-group>
 
-        <component :is="tag" v-else key="content">
+        <component
+            :is="tag"
+            v-else
+            key="content"
+        >
             <slot />
         </component>
     </transition>
@@ -63,9 +75,10 @@ export default {
                     this.timeout = setTimeout(() => {
                         this.showLoader = true;
                     }, this.spinnerDelay);
-                } else {
-                    clearTimeout(this.timeout);
+                    return;
                 }
+
+                clearTimeout(this.timeout);
             },
             immediate: true,
         },

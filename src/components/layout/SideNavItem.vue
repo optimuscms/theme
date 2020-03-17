@@ -1,22 +1,35 @@
 <template>
     <li :class="{ 'active': sectionIsActive }">
         <router-link v-if="isRouterLink" :to="to">
-            <span>{{ label }}</span>
+            <span>
+                {{ label }}
+            </span>
 
             <span class="icon large" @click="toggleSubNav">
-                <icon :icon="icon" size="sm" />
+                <icon
+                    :icon="icon"
+                    size="sm"
+                />
             </span>
         </router-link>
 
         <a v-else @click="$emit('click')">
-            <span>{{ label }}</span>
+            <span>
+                {{ label }}
+            </span>
 
             <span class="icon large">
-                <icon icon="angle-right" size="sm" />
+                <icon
+                    icon="angle-right"
+                    size="sm"
+                />
             </span>
         </a>
 
-        <ul v-if="hasSubNav && subNavIsVisible" class="side-sub-nav list-reset">
+        <ul
+            v-if="hasSubNav && subNavIsVisible"
+            class="side-sub-nav list-reset"
+        >
             <slot />
         </ul>
     </li>
@@ -51,9 +64,11 @@ export default {
         currentSection() {
             let meta = this.$route.matched[this.$route.matched.length - 1].meta;
 
-            return meta.hasOwnProperty('section')
-                ? meta.section
-                : this.$route.matched[0].meta.section;
+            if (meta.hasOwnProperty('section')) {
+                return meta.section;
+            }
+
+            return this.$route.matched[0].meta.section;
         },
 
         sectionIsActive() {
@@ -78,19 +93,12 @@ export default {
     },
 
     watch: {
-        currentSection(section) {
-            if (section === this.section) {
-                this.subNavIsVisible = true;
-            } else {
-                this.subNavIsVisible = false;
-            }
+        currentSection: {
+            handler(section) {
+                this.subNavIsVisible = (section === this.section);
+            },
+            immediate: true,
         },
-    },
-
-    created() {
-        if (this.currentSection === this.section) {
-            this.subNavIsVisible = true;
-        }
     },
 
     methods: {

@@ -1,5 +1,9 @@
 <template>
-    <o-modal :active="isOpen" @close="close" @escape="close">
+    <o-modal
+        :active="isOpen"
+        @close="close"
+        @escape="close"
+    >
         <div class="modal-content bg-white rounded max-w-sm">
             <div class="content px-6 py-8 text-center">
                 <slot :item="item">

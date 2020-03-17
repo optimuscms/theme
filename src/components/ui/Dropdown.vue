@@ -1,6 +1,13 @@
 <template>
-    <div ref="dropdown" class="dropdown" :class="{ 'open': isOpen }">
-        <div class="cursor-pointer" @click="isOpen = ! isOpen">
+    <div
+        ref="dropdown"
+        class="dropdown"
+        :class="{ 'open': isOpen }"
+    >
+        <div
+            class="cursor-pointer"
+            @click="isOpen = ! isOpen"
+        >
             <slot name="button" :is-open="isOpen">
                 <span class="button max-w-xs" :class="buttonClass">
                     <span class="truncate">
@@ -14,7 +21,10 @@
             </slot>
         </div>
 
-        <div class="dropdown-menu max-w-xs" @click="isOpen = false">
+        <div
+            class="dropdown-menu max-w-xs"
+            @click="isOpen = false"
+        >
             <div class="dropdown-content">
                 <div class="dropdown-scroll">
                     <slot>
@@ -92,7 +102,9 @@ export default {
             let option;
 
             if (this.value) {
-                option = this.options.find(({ value }) => value === this.value);
+                option = this.options.find(({ value }) => {
+                    return value === this.value;
+                });
             }
 
             return option ? option.label : this.placeholder;
