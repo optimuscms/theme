@@ -1,6 +1,6 @@
 {
     "name": "@optimuscms/theme",
-    "version": "0.3.3",
+    "version": "0.4.0",
     "main": "dist/optimus.js",
     "module": "dist/optimus.esm.js",
     "browser": {
