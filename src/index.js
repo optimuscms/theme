@@ -10,7 +10,6 @@ import alertStore from './store/modules/alert';
 import confirmationStore from './store/modules/confirmation';
 import dashboardStore from './store/modules/dashboard';
 import loaderStore from './store/modules/loader';
-import userStore from './store/modules/user';
 
 // Import components
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -48,7 +47,6 @@ export default function install(Vue, options = {}) {
         options.store.registerModule('confirmation', confirmationStore);
         options.store.registerModule('dashboard', dashboardStore);
         options.store.registerModule('loader', loaderStore);
-        options.store.registerModule('user', userStore);
 
         // Mixins
         Vue.mixin({

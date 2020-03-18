@@ -2588,55 +2588,6 @@
     actions: actions$3
   };
 
-  var state$4 = {
-    data: null,
-    isLoading: false
-  };
-  var getters$4 = {
-    data: function data(state) {
-      return state.data;
-    }
-  };
-  var mutations$4 = {
-    startLoading: function startLoading(state) {
-      state.isLoading = true;
-    },
-    stopLoading: function stopLoading(state) {
-      state.isLoading = false;
-    },
-    set: function set(state, data) {
-      state.data = data;
-    },
-    update: function update(state, data) {
-      state.data = _objectSpread2({}, state.data, {}, data);
-    }
-  };
-  var actions$4 = {
-    fetch: function fetch(_ref) {
-      var commit = _ref.commit,
-          state = _ref.state;
-
-      if (!state.data && !state.isLoading) {
-        commit('startLoading');
-        return axios.get('/admin/api/user').then(function (response) {
-          commit('set', response.data.data);
-          commit('stopLoading');
-        });
-      }
-    },
-    update: function update(_ref2, data) {
-      var commit = _ref2.commit;
-      commit('update', data);
-    }
-  };
-  var userStore = {
-    namespaced: true,
-    state: state$4,
-    getters: getters$4,
-    mutations: mutations$4,
-    actions: actions$4
-  };
-
   var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
   function createCommonjsModule(fn, module) {
@@ -3527,6 +3478,16 @@
   //
   //
   //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   var script$5 = {
     props: {
       label: {
@@ -3657,6 +3618,24 @@
   //
   //
   //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   var script$6 = {
     props: {
       item: {
@@ -3680,17 +3659,19 @@
     watch: {
       item: {
         handler: function handler(item) {
-          if (item) {
-            this.form = {
-              title: item.title,
-              description: item.description,
-              og_title: item.og_title,
-              og_description: item.og_description,
-              og_image_id: item.og_image ? item.og_image.id : null,
-              additional_tags: item.additional_tags
-            };
-            this.og_image = item.og_image;
+          if (!item) {
+            return;
           }
+
+          this.form = {
+            title: item.title,
+            description: item.description,
+            og_title: item.og_title,
+            og_description: item.og_description,
+            og_image_id: item.og_image ? item.og_image.id : null,
+            additional_tags: item.additional_tags
+          };
+          this.og_image = item.og_image;
         },
         immediate: true
       },
@@ -3844,9 +3825,16 @@
     staticRenderFns: __vue_staticRenderFns__$6
   }, __vue_inject_styles__$6, __vue_script__$6, __vue_scope_id__$6, __vue_is_functional_template__$6, __vue_module_identifier__$6, false, undefined, undefined, undefined);
 
-  /* script */
+  var script$7 = {
+    computed: _objectSpread2({}, vuex.mapGetters({
+      title: 'dashboard/title'
+    }))
+  };
 
+  /* script */
+  var __vue_script__$7 = script$7;
   /* template */
+
   var __vue_render__$7 = function __vue_render__() {
     var _vm = this;
 
@@ -3854,113 +3842,11 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("svg", {
-      staticClass: "inline-flex max-w-full h-auto",
-      attrs: {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "490",
-        viewBox: "0 0 490 403"
-      }
-    }, [_c("defs", [_c("linearGradient", {
-      attrs: {
-        id: "a",
-        x1: ".5",
-        x2: ".5",
-        y2: "1",
-        gradientUnits: "objectBoundingBox"
-      }
-    }, [_c("stop", {
-      attrs: {
-        offset: "0",
-        "stop-color": "#9b9b9b"
-      }
-    }), _vm._v(" "), _c("stop", {
-      attrs: {
-        offset: "1",
-        "stop-color": "#a9a9a9"
-      }
-    })], 1)], 1), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M266.715 401.254s-65.363-71.139 2.3-128.4c0 0 6.185-5.826 17.571-4.424s128.862 20.574 188.792-37.115c0 0 14.441-11.541 13.48-27.879s-15.413-26.223-27.694-28.3-89.028-7.765-145-57.043c0 0-1.849-1.913 0-5.392s6.2-25.024-13.343-51.3S245.659 0 169.929 0 0 53.013 0 184s99.344 178.964 104.865 182.493 77.329 45.471 161.85 34.761z",
-        fill: "#393939"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M409.09 231.351h-1.18c-24.533-.107-46.56-5.258-69.879-10.713-21.512-5.034-43.756-10.236-70.449-12.244a54.225 54.225 0 0 0 13.961-17.75 53.376 53.376 0 0 0 5.574-21.511c.423-9.4-1.569-19.27-5.921-29.336-.01-.017-.967-1.743-.3-2.984a3.028 3.028 0 0 1 2.668-1.268l.48-.033c4.4-.3 7.3-.5 11.848-3.6 2.112-1.431 3.419-2.018 4.511-2.018 1.126 0 1.968.625 3.241 1.57.2.145.4.3.617.455l.067.049a340.442 340.442 0 0 0 37.617 23.345 314.334 314.334 0 0 0 36.188 16.7 212.053 212.053 0 0 0 41.758 11.588c53.815 8.648 53.5 11.373 52.348 21.514-.086.755-.175 1.534-.248 2.366-.588 6.694-5.643 12.381-14.62 16.449-10.87 4.923-27.114 7.42-48.281 7.421zm-95.391-70.557a7.535 7.535 0 0 0-5.022 2.011c-2.1 1.83-3.011 3.714-2.7 5.6.711 4.357 7.739 7.318 7.81 7.348a30.5 30.5 0 0 0 11.2 2.476 18.924 18.924 0 0 0 1.986-.1c1.53-.161 2.466-.679 2.783-1.538.813-2.207-2.747-5.992-2.783-6.03-.071-.102-6.463-9.767-13.274-9.767z",
-        fill: "#8b8b8b"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M276.391 243.626c7.455 14.8 82.932 24.335 146.147 3.8 0 0 2.98-3.055 0-3.8s-23.641 3.273-67.83-7.557-63.38-12.806-76.323-13.224-9.449 5.979-1.994 20.781z",
-        fill: "#7e7e7e"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M278.808 1132.409c2.07.9 81.377 43.952 81.377 43.952s51.109 29.8 95.827 16.121 69.742-30.519 69.742-30.519-8.755 13.511-23.287 21-29.945 27.821-30.668 37.619 3.208-5.007 21.176-16.709 14.31-6.888 14.239-4.821.645 19.142 6.669 26.681 3.81 6.569 1.66 8.276-30.008 23.967-35.331 59.81 9.756 65.22 9.756 65.22.534 1.5-2.028 1.277-224.925-13.457-211.84-225.076c0-.001.639-3.74 2.708-2.831z",
-        transform: "translate(-257.832 -974.405)",
-        fill: "url(#a)"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M152.677 368.291a250.6 250.6 0 0 1-48.99-24.393 205.914 205.914 0 0 1-23.623-17.854 184.148 184.148 0 0 1-21.455-22.271 174.636 174.636 0 0 1-18.1-27.172 181.145 181.145 0 0 1-13.545-32.558 208.462 208.462 0 0 1-7.811-38.427 263.719 263.719 0 0 1-.884-44.782c.005-.03.527-2.971 2.086-2.971a1.558 1.558 0 0 1 .622.141c1.108.484 24.64 13.206 44.195 23.794a158.613 158.613 0 0 0-.264 28.437 196.184 196.184 0 0 0 8.8 44.7 222.226 222.226 0 0 0 26.408 54.755 259.726 259.726 0 0 0 22.48 29.209 304.769 304.769 0 0 0 30.086 29.393z",
-        fill: "#7e7e7e"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M272.548 166.383s-3.468-28.768-17.326-28.153-16.7 15.224-38.084 19.226-35.29-8.417-43.792-23.676-19.261-25.88-42.867-21.6 5.685-11.922 23.49-14.854 30.692-2.573 52.247 6.753 72.874 26.449 85.889 6.493-11.423-49.948-31.033-64.268-42.922-28.464-87.726-28.583-125.858 22.083-150.65 117.45c0 0 70.667 42.027 107.784 57.046s74.389 17.554 142.068-25.834z",
-        fill: "#c3c3c3"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M222.796 239.903a71.817 71.817 0 0 1 25.367-18.27s1.865-.518 1.556 2.338-.625 17.685 9.792 32.4c0 0 1.576.913-.693 2.688s-11.944 9.87-17.839 17.584c0-.004-17.29-18.791-18.183-36.74z",
-        fill: "#7e7e7e"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M210.479 142.511c-13.72-.181-21.934-6.95-24.462-19.317-.9-4.333 1.173-6.95 5.6-7.041 5.145-.09 7.763 2.076 8.846 7.131 1.173 5.506 3.43 10.2 9.478 11.915 5.867 1.715 10.29-.451 13.811-4.965 1.535-1.986 2.437-1.083 3.25.361 1.444 2.708.361 4.965-1.715 6.77a20.432 20.432 0 0 1-14.808 5.146z",
-        fill: "#fff"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M279.139 117.233c6.048-5.416 8.214-11.915 6.5-20.129-3.7-18.053-14.081-31.593-27.892-42.786-21.394-17.511-46.487-26.989-73.208-32.676a171.027 171.027 0 0 0-21.3-3.25c48.653-3.34 89.9 11.464 121.045 50.188 7.131 8.936 12.457 19.046 13.179 30.961.722 9.117-9.839 19.407-18.324 17.692z",
-        fill: "#e8e8e8"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M371.84 249.591c-9.929 2.347-20.039 1.986-29.968 1.174-9.568-.812-19.407-1.444-28.524-4.965a53.081 53.081 0 0 1-6.5-2.979c-1.535-.812-2.618-2.257-1.986-4.062.541-1.535 1.986-1.986 3.611-2.167 6.679-.722 13.179.9 19.5 2.257 14.71 3.163 29.244 7.131 43.867 10.742z",
-        fill: "#8b8b8b"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M329.929 176.201a28.576 28.576 0 0 0-10.658-12.42c-5.813-3.788-9.161-3.171-13.124 2.554a8.987 8.987 0 0 1 10.658-11c5.549.969 13.829 13.021 14.269 18.747a1.8 1.8 0 0 1-1.145 2.119z",
-        fill: "#7e7e7e"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M22.695 135.113l44.024 25.058s5.2-88.939 69.618-137.629c0-.001-86.884 11.128-113.642 112.571z",
-        fill: "#969696"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M209.697 158.215c-6.86 2.889-13.689 1.535-20.639 0-12.818-2.888-22.024-10.922-29.787-21.032-6.048-7.943-14.109-19.169-22.775-24.856-1.839-1.039-1.7-1.222 0-1.367a35.093 35.093 0 0 1 31.8 14.037c4.423 6.228 7.582 13.088 12.547 19.046 6.86 8.214 15.209 12.3 25.228 13.566 1.084.091 3.626.606 3.626.606z",
-        fill: "#969696"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M65.801 160.035s.835-46.126 27.609-87.05c0 0-14.884 64.081-7.393 97.913h-14.3z",
-        fill: "#393939"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M87.811 194.64s-7.016 40.042 20.944 83.626c0 0-13.853-45.963 5.7-69.823z",
-        fill: "#7e7e7e"
-      }
-    }), _vm._v(" "), _c("path", {
-      attrs: {
-        d: "M451.302 189.207s23.065 1.384 22.938 15.687-8.436 16.7-26.22 22.341c0 0 19.989-10.768 19.763-22.658s-16.481-15.37-16.481-15.37z",
-        fill: "#bcbcbc"
-      }
-    })]);
+    return _c("header", {
+      staticClass: "flex justify-between items-center bg-white border-b border-grey-500 px-8 h-24"
+    }, [_c("div", [_vm.title ? _c("h1", {
+      staticClass: "title"
+    }, [_vm._v("\n            " + _vm._s(_vm.title) + "\n        ")]) : _vm._e()]), _vm._v(" "), _c("div", [_vm._t("default")], 2)]);
   };
 
   var __vue_staticRenderFns__$7 = [];
@@ -3986,16 +3872,60 @@
   var __vue_component__$7 = normalizeComponent$1({
     render: __vue_render__$7,
     staticRenderFns: __vue_staticRenderFns__$7
-  }, __vue_inject_styles__$7, {}, __vue_scope_id__$7, __vue_is_functional_template__$7, __vue_module_identifier__$7, false, undefined, undefined, undefined);
+  }, __vue_inject_styles__$7, __vue_script__$7, __vue_scope_id__$7, __vue_is_functional_template__$7, __vue_module_identifier__$7, false, undefined, undefined, undefined);
 
-  var script$7 = {
-    computed: _objectSpread2({}, vuex.mapGetters({
-      title: 'dashboard/title'
-    }))
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  var script$8 = {
+    props: {
+      user: {
+        type: Object,
+        required: true
+      }
+    }
   };
 
   /* script */
-  var __vue_script__$7 = script$7;
+  var __vue_script__$8 = script$8;
   /* template */
 
   var __vue_render__$8 = function __vue_render__() {
@@ -4005,11 +3935,44 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("header", {
-      staticClass: "flex justify-between items-center bg-white border-b border-grey-500 px-8 h-24"
-    }, [_c("div", [_vm.title ? _c("h1", {
-      staticClass: "title"
-    }, [_vm._v("\n            " + _vm._s(_vm.title) + "\n        ")]) : _vm._e()]), _vm._v(" "), _c("div", [_vm._t("default")], 2)]);
+    return _c("div", {
+      staticClass: "side-header px-10 h-24"
+    }, [_c("div", {
+      staticClass: "flex items-center"
+    }, [_c("div", {
+      staticClass: "flex-no-shrink mr-4"
+    }, [_c("figure", {
+      staticClass: "image w-12 h-12"
+    }, [_c("img", {
+      staticClass: "rounded-full",
+      attrs: {
+        src: _vm.user.avatar,
+        alt: _vm.user.name
+      }
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "flex-grow"
+    }, [_c("div", {
+      staticClass: "font-medium text-white mb-1"
+    }, [_vm._v("\n                " + _vm._s(_vm.user.name) + "\n            ")]), _vm._v(" "), _c("router-link", {
+      staticClass: "flex items-center text-grey-500 hover:text-grey-400",
+      attrs: {
+        to: {
+          name: "admin-users.edit",
+          params: {
+            id: _vm.user.id
+          }
+        }
+      }
+    }, [_c("span", {
+      staticClass: "icon small mr-1"
+    }, [_c("icon", {
+      attrs: {
+        icon: "cog",
+        size: "sm"
+      }
+    })], 1), _vm._v(" "), _c("span", {
+      staticClass: "text-xs"
+    }, [_vm._v("\n                    Your details\n                ")])])], 1)])]);
   };
 
   var __vue_staticRenderFns__$8 = [];
@@ -4035,31 +3998,11 @@
   var __vue_component__$8 = normalizeComponent$1({
     render: __vue_render__$8,
     staticRenderFns: __vue_staticRenderFns__$8
-  }, __vue_inject_styles__$8, __vue_script__$7, __vue_scope_id__$8, __vue_is_functional_template__$8, __vue_module_identifier__$8, false, undefined, undefined, undefined);
-
-  var script$8 = {
-    props: {
-      avatar: {
-        type: String,
-        default: '/back/images/avatar.png'
-      }
-    },
-    computed: _objectSpread2({}, vuex.mapGetters({
-      user: 'user/data'
-    }), {
-      userIsSet: function userIsSet() {
-        return this.user;
-      },
-      imageSrc: function imageSrc() {
-        return this.user && this.user.avatar ? this.user.avatar : this.avatar;
-      }
-    })
-  };
+  }, __vue_inject_styles__$8, __vue_script__$8, __vue_scope_id__$8, __vue_is_functional_template__$8, __vue_module_identifier__$8, false, undefined, undefined, undefined);
 
   /* script */
-  var __vue_script__$8 = script$8;
-  /* template */
 
+  /* template */
   var __vue_render__$9 = function __vue_render__() {
     var _vm = this;
 
@@ -4067,44 +4010,9 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
-      staticClass: "side-header px-10 h-24"
-    }, [_vm.userIsSet ? _c("div", {
-      staticClass: "flex items-center"
-    }, [_c("div", {
-      staticClass: "flex-no-shrink mr-4"
-    }, [_c("figure", {
-      staticClass: "image w-12 h-12"
-    }, [_c("img", {
-      staticClass: "rounded-full",
-      attrs: {
-        src: _vm.imageSrc,
-        alt: _vm.user.name
-      }
-    })])]), _vm._v(" "), _c("div", {
-      staticClass: "flex-grow"
-    }, [_c("div", {
-      staticClass: "font-medium text-white mb-1"
-    }, [_vm._v("\n                " + _vm._s(_vm.user.name) + "\n            ")]), _vm._v(" "), _c("router-link", {
-      staticClass: "flex items-center text-grey-500 hover:text-grey-400",
-      attrs: {
-        to: {
-          name: "users.edit",
-          params: {
-            id: _vm.user.id
-          }
-        }
-      }
-    }, [_c("span", {
-      staticClass: "icon small mr-1"
-    }, [_c("icon", {
-      attrs: {
-        icon: "cog",
-        size: "sm"
-      }
-    })], 1), _vm._v(" "), _c("span", {
-      staticClass: "text-xs"
-    }, [_vm._v("Your details")])])], 1)]) : _vm._e()]);
+    return _c("ul", {
+      staticClass: "side-nav list-reset"
+    }, [_vm._t("default")], 2);
   };
 
   var __vue_staticRenderFns__$9 = [];
@@ -4130,11 +4038,32 @@
   var __vue_component__$9 = normalizeComponent$1({
     render: __vue_render__$9,
     staticRenderFns: __vue_staticRenderFns__$9
-  }, __vue_inject_styles__$9, __vue_script__$8, __vue_scope_id__$9, __vue_is_functional_template__$9, __vue_module_identifier__$9, false, undefined, undefined, undefined);
+  }, __vue_inject_styles__$9, {}, __vue_scope_id__$9, __vue_is_functional_template__$9, __vue_module_identifier__$9, false, undefined, undefined, undefined);
+
+  var script$9 = {
+    components: {
+      MainHeader: __vue_component__$7,
+      SideHeader: __vue_component__$8,
+      SideNav: __vue_component__$9
+    },
+    props: {
+      user: {
+        type: Object,
+        required: true
+      }
+    },
+    computed: _objectSpread2({}, vuex.mapGetters({
+      sideIsVisible: 'dashboard/sideIsVisible'
+    })),
+    methods: _objectSpread2({}, vuex.mapActions({
+      toggleSide: 'dashboard/toggleSide'
+    }))
+  };
 
   /* script */
-
+  var __vue_script__$9 = script$9;
   /* template */
+
   var __vue_render__$a = function __vue_render__() {
     var _vm = this;
 
@@ -4142,12 +4071,43 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("ul", {
-      staticClass: "side-nav list-reset"
-    }, [_vm._t("default")], 2);
+    return _c("div", {
+      staticClass: "dashboard",
+      class: {
+        "show-side": _vm.sideIsVisible
+      }
+    }, [_c("div", {
+      staticClass: "side bg-blue-700"
+    }, [_c("a", {
+      staticClass: "side-toggle bg-blue-700 lg:hidden",
+      on: {
+        click: _vm.toggleSide
+      }
+    }, [_vm._m(0)]), _vm._v(" "), _c("side-header", {
+      attrs: {
+        user: _vm.user
+      }
+    }), _vm._v(" "), _c("div", {
+      staticClass: "side-content px-10 py-8"
+    }, [_c("side-nav", [_vm._t("side-nav")], 2)], 1)], 1), _vm._v(" "), _c("div", {
+      staticClass: "main ml-5 lg:ml-0",
+      attrs: {
+        id: "main"
+      }
+    }, [_c("main-header", [_vm._t("header")], 2), _vm._v(" "), _c("router-view")], 1)]);
   };
 
-  var __vue_staticRenderFns__$a = [];
+  var __vue_staticRenderFns__$a = [function () {
+    var _vm = this;
+
+    var _h = _vm.$createElement;
+
+    var _c = _vm._self._c || _h;
+
+    return _c("span", {
+      staticClass: "dots"
+    }, [_c("i")]);
+  }];
   __vue_render__$a._withStripped = true;
   /* style */
 
@@ -4170,142 +4130,21 @@
   var __vue_component__$a = normalizeComponent$1({
     render: __vue_render__$a,
     staticRenderFns: __vue_staticRenderFns__$a
-  }, __vue_inject_styles__$a, {}, __vue_scope_id__$a, __vue_is_functional_template__$a, __vue_module_identifier__$a, false, undefined, undefined, undefined);
+  }, __vue_inject_styles__$a, __vue_script__$9, __vue_scope_id__$a, __vue_is_functional_template__$a, __vue_module_identifier__$a, false, undefined, undefined, undefined);
 
-  var script$9 = {
-    components: {
-      Logo: __vue_component__$7,
-      MainHeader: __vue_component__$8,
-      SideHeader: __vue_component__$9,
-      SideNav: __vue_component__$a
-    },
-    props: {
-      loading: {
-        type: Boolean,
-        default: false
-      },
-      avatar: {
-        type: String,
-        default: undefined
-      }
-    },
-    computed: _objectSpread2({}, vuex.mapGetters({
-      sideIsVisible: 'dashboard/sideIsVisible'
-    })),
-    methods: _objectSpread2({}, vuex.mapActions({
-      toggleSide: 'dashboard/toggleSide'
-    }))
-  };
-
-  /* script */
-  var __vue_script__$9 = script$9;
-  /* template */
-
-  var __vue_render__$b = function __vue_render__() {
-    var _vm = this;
-
-    var _h = _vm.$createElement;
-
-    var _c = _vm._self._c || _h;
-
-    return _c("transition-group", {
-      staticClass: "min-h-screen bg-grey-200",
-      attrs: {
-        tag: "div",
-        mode: "out-in",
-        name: "dashboard"
-      }
-    }, [_vm.loading ? _c("div", {
-      key: "loader",
-      staticClass: "flex min-h-screen items-center justify-center bg-grey-200"
-    }, [_c("div", {
-      staticClass: "text-center pulse"
-    }, [_c("logo", {
-      staticClass: "w-16"
-    }), _vm._v(" "), _c("div", {
-      staticClass: "title text-3xl uppercase"
-    }, [_c("strong", [_vm._v("Optimus")])]), _vm._v(" "), _c("div", {
-      staticClass: "subtitle text-coral-500"
-    }, [_c("i", [_vm._v("loading...")])])], 1)]) : _vm._e(), _vm._v(" "), _c("div", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: !_vm.loading,
-        expression: "! loading"
-      }],
-      key: "dashboard",
-      staticClass: "dashboard",
-      class: {
-        "show-side": _vm.sideIsVisible
-      }
-    }, [_c("transition", {
-      attrs: {
-        name: "side"
-      }
-    }, [_c("div", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: !_vm.loading,
-        expression: "! loading"
-      }],
-      staticClass: "side bg-blue-700"
-    }, [_c("a", {
-      staticClass: "side-toggle bg-blue-700 lg:hidden",
-      on: {
-        click: _vm.toggleSide
-      }
-    }, [_c("span", {
-      staticClass: "dots"
-    }, [_c("i")])]), _vm._v(" "), _c("side-header", {
-      attrs: {
-        avatar: _vm.avatar
-      }
-    }), _vm._v(" "), _c("div", {
-      staticClass: "side-content px-10 py-8"
-    }, [_c("side-nav", [_vm._t("side-nav")], 2)], 1)], 1)]), _vm._v(" "), _c("transition", {
-      attrs: {
-        name: "main"
-      }
-    }, [_c("div", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: !_vm.loading,
-        expression: "! loading"
-      }],
-      staticClass: "main ml-5 lg:ml-0",
-      attrs: {
-        id: "main"
-      }
-    }, [_c("main-header", [_vm._t("header")], 2), _vm._v(" "), _c("router-view")], 1)])], 1)]);
-  };
-
-  var __vue_staticRenderFns__$b = [];
-  __vue_render__$b._withStripped = true;
-  /* style */
-
-  var __vue_inject_styles__$b = undefined;
-  /* scoped */
-
-  var __vue_scope_id__$b = undefined;
-  /* module identifier */
-
-  var __vue_module_identifier__$b = undefined;
-  /* functional template */
-
-  var __vue_is_functional_template__$b = false;
-  /* style inject */
-
-  /* style inject SSR */
-
-  /* style inject shadow dom */
-
-  var __vue_component__$b = normalizeComponent$1({
-    render: __vue_render__$b,
-    staticRenderFns: __vue_staticRenderFns__$b
-  }, __vue_inject_styles__$b, __vue_script__$9, __vue_scope_id__$b, __vue_is_functional_template__$b, __vue_module_identifier__$b, false, undefined, undefined, undefined);
-
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   //
   //
   //
@@ -4353,7 +4192,12 @@
     computed: {
       currentSection: function currentSection() {
         var meta = this.$route.matched[this.$route.matched.length - 1].meta;
-        return meta.hasOwnProperty('section') ? meta.section : this.$route.matched[0].meta.section;
+
+        if (meta.hasOwnProperty('section')) {
+          return meta.section;
+        }
+
+        return this.$route.matched[0].meta.section;
       },
       sectionIsActive: function sectionIsActive() {
         return this.section === this.currentSection;
@@ -4373,17 +4217,11 @@
       }
     },
     watch: {
-      currentSection: function currentSection(section) {
-        if (section === this.section) {
-          this.subNavIsVisible = true;
-        } else {
-          this.subNavIsVisible = false;
-        }
-      }
-    },
-    created: function created() {
-      if (this.currentSection === this.section) {
-        this.subNavIsVisible = true;
+      currentSection: {
+        handler: function handler(section) {
+          this.subNavIsVisible = section === this.section;
+        },
+        immediate: true
       }
     },
     methods: {
@@ -4400,7 +4238,7 @@
   var __vue_script__$a = script$a;
   /* template */
 
-  var __vue_render__$c = function __vue_render__() {
+  var __vue_render__$b = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -4415,7 +4253,7 @@
       attrs: {
         to: _vm.to
       }
-    }, [_c("span", [_vm._v(_vm._s(_vm.label))]), _vm._v(" "), _c("span", {
+    }, [_c("span", [_vm._v("\n            " + _vm._s(_vm.label) + "\n        ")]), _vm._v(" "), _c("span", {
       staticClass: "icon large",
       on: {
         click: _vm.toggleSubNav
@@ -4431,7 +4269,7 @@
           return _vm.$emit("click");
         }
       }
-    }, [_c("span", [_vm._v(_vm._s(_vm.label))]), _vm._v(" "), _c("span", {
+    }, [_c("span", [_vm._v("\n            " + _vm._s(_vm.label) + "\n        ")]), _vm._v(" "), _c("span", {
       staticClass: "icon large"
     }, [_c("icon", {
       attrs: {
@@ -4443,31 +4281,35 @@
     }, [_vm._t("default")], 2) : _vm._e()], 1);
   };
 
-  var __vue_staticRenderFns__$c = [];
-  __vue_render__$c._withStripped = true;
+  var __vue_staticRenderFns__$b = [];
+  __vue_render__$b._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$c = undefined;
+  var __vue_inject_styles__$b = undefined;
   /* scoped */
 
-  var __vue_scope_id__$c = undefined;
+  var __vue_scope_id__$b = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$c = undefined;
+  var __vue_module_identifier__$b = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$c = false;
+  var __vue_is_functional_template__$b = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$c = normalizeComponent$1({
-    render: __vue_render__$c,
-    staticRenderFns: __vue_staticRenderFns__$c
-  }, __vue_inject_styles__$c, __vue_script__$a, __vue_scope_id__$c, __vue_is_functional_template__$c, __vue_module_identifier__$c, false, undefined, undefined, undefined);
+  var __vue_component__$b = normalizeComponent$1({
+    render: __vue_render__$b,
+    staticRenderFns: __vue_staticRenderFns__$b
+  }, __vue_inject_styles__$b, __vue_script__$a, __vue_scope_id__$b, __vue_is_functional_template__$b, __vue_module_identifier__$b, false, undefined, undefined, undefined);
 
+  //
+  //
+  //
+  //
   //
   //
   //
@@ -4495,7 +4337,7 @@
   var __vue_script__$b = script$b;
   /* template */
 
-  var __vue_render__$d = function __vue_render__() {
+  var __vue_render__$c = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -4513,30 +4355,30 @@
     }, [_c("a", [_vm._t("default")], 2)]);
   };
 
-  var __vue_staticRenderFns__$d = [];
-  __vue_render__$d._withStripped = true;
+  var __vue_staticRenderFns__$c = [];
+  __vue_render__$c._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$d = undefined;
+  var __vue_inject_styles__$c = undefined;
   /* scoped */
 
-  var __vue_scope_id__$d = undefined;
+  var __vue_scope_id__$c = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$d = undefined;
+  var __vue_module_identifier__$c = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$d = false;
+  var __vue_is_functional_template__$c = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$d = normalizeComponent$1({
-    render: __vue_render__$d,
-    staticRenderFns: __vue_staticRenderFns__$d
-  }, __vue_inject_styles__$d, __vue_script__$b, __vue_scope_id__$d, __vue_is_functional_template__$d, __vue_module_identifier__$d, false, undefined, undefined, undefined);
+  var __vue_component__$c = normalizeComponent$1({
+    render: __vue_render__$c,
+    staticRenderFns: __vue_staticRenderFns__$c
+  }, __vue_inject_styles__$c, __vue_script__$b, __vue_scope_id__$c, __vue_is_functional_template__$c, __vue_module_identifier__$c, false, undefined, undefined, undefined);
 
   var script$c = {
     props: {
@@ -4571,7 +4413,7 @@
   var __vue_script__$c = script$c;
   /* template */
 
-  var __vue_render__$e = function __vue_render__() {
+  var __vue_render__$d = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -4600,30 +4442,30 @@
     }, [_vm._v("\n                " + _vm._s(_vm.buttonText) + "\n            ")])])])]);
   };
 
-  var __vue_staticRenderFns__$e = [];
-  __vue_render__$e._withStripped = true;
+  var __vue_staticRenderFns__$d = [];
+  __vue_render__$d._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$e = undefined;
+  var __vue_inject_styles__$d = undefined;
   /* scoped */
 
-  var __vue_scope_id__$e = undefined;
+  var __vue_scope_id__$d = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$e = undefined;
+  var __vue_module_identifier__$d = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$e = false;
+  var __vue_is_functional_template__$d = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$e = normalizeComponent$1({
-    render: __vue_render__$e,
-    staticRenderFns: __vue_staticRenderFns__$e
-  }, __vue_inject_styles__$e, __vue_script__$c, __vue_scope_id__$e, __vue_is_functional_template__$e, __vue_module_identifier__$e, false, undefined, undefined, undefined);
+  var __vue_component__$d = normalizeComponent$1({
+    render: __vue_render__$d,
+    staticRenderFns: __vue_staticRenderFns__$d
+  }, __vue_inject_styles__$d, __vue_script__$c, __vue_scope_id__$d, __vue_is_functional_template__$d, __vue_module_identifier__$d, false, undefined, undefined, undefined);
 
   var script$d = {
     props: {
@@ -4658,7 +4500,7 @@
   var __vue_script__$d = script$d;
   /* template */
 
-  var __vue_render__$f = function __vue_render__() {
+  var __vue_render__$e = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -4695,31 +4537,41 @@
     }, [_vm._v("\n                " + _vm._s(_vm.buttonCancelText) + "\n            ")])])])]);
   };
 
-  var __vue_staticRenderFns__$f = [];
-  __vue_render__$f._withStripped = true;
+  var __vue_staticRenderFns__$e = [];
+  __vue_render__$e._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$f = undefined;
+  var __vue_inject_styles__$e = undefined;
   /* scoped */
 
-  var __vue_scope_id__$f = undefined;
+  var __vue_scope_id__$e = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$f = undefined;
+  var __vue_module_identifier__$e = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$f = false;
+  var __vue_is_functional_template__$e = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$f = normalizeComponent$1({
-    render: __vue_render__$f,
-    staticRenderFns: __vue_staticRenderFns__$f
-  }, __vue_inject_styles__$f, __vue_script__$d, __vue_scope_id__$f, __vue_is_functional_template__$f, __vue_module_identifier__$f, false, undefined, undefined, undefined);
+  var __vue_component__$e = normalizeComponent$1({
+    render: __vue_render__$e,
+    staticRenderFns: __vue_staticRenderFns__$e
+  }, __vue_inject_styles__$e, __vue_script__$d, __vue_scope_id__$e, __vue_is_functional_template__$e, __vue_module_identifier__$e, false, undefined, undefined, undefined);
 
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   //
   //
   //
@@ -4856,7 +4708,7 @@
   var __vue_script__$e = script$e;
   /* template */
 
-  var __vue_render__$g = function __vue_render__() {
+  var __vue_render__$f = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -4928,31 +4780,43 @@
     })])], 2)])])]);
   };
 
-  var __vue_staticRenderFns__$g = [];
-  __vue_render__$g._withStripped = true;
+  var __vue_staticRenderFns__$f = [];
+  __vue_render__$f._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$g = undefined;
+  var __vue_inject_styles__$f = undefined;
   /* scoped */
 
-  var __vue_scope_id__$g = undefined;
+  var __vue_scope_id__$f = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$g = undefined;
+  var __vue_module_identifier__$f = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$g = false;
+  var __vue_is_functional_template__$f = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$g = normalizeComponent$1({
-    render: __vue_render__$g,
-    staticRenderFns: __vue_staticRenderFns__$g
-  }, __vue_inject_styles__$g, __vue_script__$e, __vue_scope_id__$g, __vue_is_functional_template__$g, __vue_module_identifier__$g, false, undefined, undefined, undefined);
+  var __vue_component__$f = normalizeComponent$1({
+    render: __vue_render__$f,
+    staticRenderFns: __vue_staticRenderFns__$f
+  }, __vue_inject_styles__$f, __vue_script__$e, __vue_scope_id__$f, __vue_is_functional_template__$f, __vue_module_identifier__$f, false, undefined, undefined, undefined);
 
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   //
   //
   //
@@ -5014,9 +4878,10 @@
             this.timeout = setTimeout(function () {
               _this.showLoader = true;
             }, this.spinnerDelay);
-          } else {
-            clearTimeout(this.timeout);
+            return;
           }
+
+          clearTimeout(this.timeout);
         },
         immediate: true
       }
@@ -5027,7 +4892,7 @@
   var __vue_script__$f = script$f;
   /* template */
 
-  var __vue_render__$h = function __vue_render__() {
+  var __vue_render__$g = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -5051,8 +4916,8 @@
       staticClass: "icon"
     }, [_c("icon", {
       attrs: {
-        icon: "spinner",
         spin: "",
+        icon: "spinner",
         size: "lg"
       }
     })], 1) : _vm._e()])], 1) : _vm.transitionName ? _c("transition-group", {
@@ -5066,31 +4931,34 @@
     }, [_vm._t("default")], 2)], 1);
   };
 
-  var __vue_staticRenderFns__$h = [];
-  __vue_render__$h._withStripped = true;
+  var __vue_staticRenderFns__$g = [];
+  __vue_render__$g._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$h = undefined;
+  var __vue_inject_styles__$g = undefined;
   /* scoped */
 
-  var __vue_scope_id__$h = undefined;
+  var __vue_scope_id__$g = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$h = undefined;
+  var __vue_module_identifier__$g = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$h = false;
+  var __vue_is_functional_template__$g = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$h = normalizeComponent$1({
-    render: __vue_render__$h,
-    staticRenderFns: __vue_staticRenderFns__$h
-  }, __vue_inject_styles__$h, __vue_script__$f, __vue_scope_id__$h, __vue_is_functional_template__$h, __vue_module_identifier__$h, false, undefined, undefined, undefined);
+  var __vue_component__$g = normalizeComponent$1({
+    render: __vue_render__$g,
+    staticRenderFns: __vue_staticRenderFns__$g
+  }, __vue_inject_styles__$g, __vue_script__$f, __vue_scope_id__$g, __vue_is_functional_template__$g, __vue_module_identifier__$g, false, undefined, undefined, undefined);
 
+  //
+  //
+  //
   //
   //
   //
@@ -5127,7 +4995,7 @@
   var __vue_script__$g = script$g;
   /* template */
 
-  var __vue_render__$i = function __vue_render__() {
+  var __vue_render__$h = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -5150,30 +5018,30 @@
     }), _vm._v(" "), _vm._t("default")], 2) : _vm._e()]);
   };
 
-  var __vue_staticRenderFns__$i = [];
-  __vue_render__$i._withStripped = true;
+  var __vue_staticRenderFns__$h = [];
+  __vue_render__$h._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$i = undefined;
+  var __vue_inject_styles__$h = undefined;
   /* scoped */
 
-  var __vue_scope_id__$i = undefined;
+  var __vue_scope_id__$h = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$i = undefined;
+  var __vue_module_identifier__$h = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$i = false;
+  var __vue_is_functional_template__$h = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$i = normalizeComponent$1({
-    render: __vue_render__$i,
-    staticRenderFns: __vue_staticRenderFns__$i
-  }, __vue_inject_styles__$i, __vue_script__$g, __vue_scope_id__$i, __vue_is_functional_template__$i, __vue_module_identifier__$i, false, undefined, undefined, undefined);
+  var __vue_component__$h = normalizeComponent$1({
+    render: __vue_render__$h,
+    staticRenderFns: __vue_staticRenderFns__$h
+  }, __vue_inject_styles__$h, __vue_script__$g, __vue_scope_id__$h, __vue_is_functional_template__$h, __vue_module_identifier__$h, false, undefined, undefined, undefined);
 
   //
   //
@@ -5223,7 +5091,7 @@
   var __vue_script__$h = script$h;
   /* template */
 
-  var __vue_render__$j = function __vue_render__() {
+  var __vue_render__$i = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -5247,30 +5115,30 @@
     }) : _vm._e(), _vm._v(" "), _vm._t("default")], 2)]);
   };
 
-  var __vue_staticRenderFns__$j = [];
-  __vue_render__$j._withStripped = true;
+  var __vue_staticRenderFns__$i = [];
+  __vue_render__$i._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$j = undefined;
+  var __vue_inject_styles__$i = undefined;
   /* scoped */
 
-  var __vue_scope_id__$j = undefined;
+  var __vue_scope_id__$i = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$j = undefined;
+  var __vue_module_identifier__$i = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$j = false;
+  var __vue_is_functional_template__$i = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$j = normalizeComponent$1({
-    render: __vue_render__$j,
-    staticRenderFns: __vue_staticRenderFns__$j
-  }, __vue_inject_styles__$j, __vue_script__$h, __vue_scope_id__$j, __vue_is_functional_template__$j, __vue_module_identifier__$j, false, undefined, undefined, undefined);
+  var __vue_component__$i = normalizeComponent$1({
+    render: __vue_render__$i,
+    staticRenderFns: __vue_staticRenderFns__$i
+  }, __vue_inject_styles__$i, __vue_script__$h, __vue_scope_id__$i, __vue_is_functional_template__$i, __vue_module_identifier__$i, false, undefined, undefined, undefined);
 
   //
   //
@@ -5402,7 +5270,7 @@
   var __vue_script__$i = script$i;
   /* template */
 
-  var __vue_render__$k = function __vue_render__() {
+  var __vue_render__$j = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -5452,30 +5320,30 @@
     }), 0)]) : _vm._e();
   };
 
-  var __vue_staticRenderFns__$k = [];
-  __vue_render__$k._withStripped = true;
+  var __vue_staticRenderFns__$j = [];
+  __vue_render__$j._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$k = undefined;
+  var __vue_inject_styles__$j = undefined;
   /* scoped */
 
-  var __vue_scope_id__$k = undefined;
+  var __vue_scope_id__$j = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$k = undefined;
+  var __vue_module_identifier__$j = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$k = false;
+  var __vue_is_functional_template__$j = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$k = normalizeComponent$1({
-    render: __vue_render__$k,
-    staticRenderFns: __vue_staticRenderFns__$k
-  }, __vue_inject_styles__$k, __vue_script__$i, __vue_scope_id__$k, __vue_is_functional_template__$k, __vue_module_identifier__$k, false, undefined, undefined, undefined);
+  var __vue_component__$j = normalizeComponent$1({
+    render: __vue_render__$j,
+    staticRenderFns: __vue_staticRenderFns__$j
+  }, __vue_inject_styles__$j, __vue_script__$i, __vue_scope_id__$j, __vue_is_functional_template__$j, __vue_module_identifier__$j, false, undefined, undefined, undefined);
 
   //
   //
@@ -5531,7 +5399,7 @@
   var __vue_script__$j = script$j;
   /* template */
 
-  var __vue_render__$l = function __vue_render__() {
+  var __vue_render__$k = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -5580,30 +5448,30 @@
     })], 1)])])])]);
   };
 
-  var __vue_staticRenderFns__$l = [];
-  __vue_render__$l._withStripped = true;
+  var __vue_staticRenderFns__$k = [];
+  __vue_render__$k._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$l = undefined;
+  var __vue_inject_styles__$k = undefined;
   /* scoped */
 
-  var __vue_scope_id__$l = undefined;
+  var __vue_scope_id__$k = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$l = undefined;
+  var __vue_module_identifier__$k = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$l = false;
+  var __vue_is_functional_template__$k = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$l = normalizeComponent$1({
-    render: __vue_render__$l,
-    staticRenderFns: __vue_staticRenderFns__$l
-  }, __vue_inject_styles__$l, __vue_script__$j, __vue_scope_id__$l, __vue_is_functional_template__$l, __vue_module_identifier__$l, false, undefined, undefined, undefined);
+  var __vue_component__$k = normalizeComponent$1({
+    render: __vue_render__$k,
+    staticRenderFns: __vue_staticRenderFns__$k
+  }, __vue_inject_styles__$k, __vue_script__$j, __vue_scope_id__$k, __vue_is_functional_template__$k, __vue_module_identifier__$k, false, undefined, undefined, undefined);
 
   //
   //
@@ -5696,7 +5564,7 @@
   var __vue_script__$k = script$k;
   /* template */
 
-  var __vue_render__$m = function __vue_render__() {
+  var __vue_render__$l = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -5731,30 +5599,30 @@
     }), 0)])], null, _vm.tabs), _vm._v(" "), _vm._t("default")], 2);
   };
 
-  var __vue_staticRenderFns__$m = [];
-  __vue_render__$m._withStripped = true;
+  var __vue_staticRenderFns__$l = [];
+  __vue_render__$l._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$m = undefined;
+  var __vue_inject_styles__$l = undefined;
   /* scoped */
 
-  var __vue_scope_id__$m = undefined;
+  var __vue_scope_id__$l = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$m = undefined;
+  var __vue_module_identifier__$l = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$m = false;
+  var __vue_is_functional_template__$l = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$m = normalizeComponent$1({
-    render: __vue_render__$m,
-    staticRenderFns: __vue_staticRenderFns__$m
-  }, __vue_inject_styles__$m, __vue_script__$k, __vue_scope_id__$m, __vue_is_functional_template__$m, __vue_module_identifier__$m, false, undefined, undefined, undefined);
+  var __vue_component__$l = normalizeComponent$1({
+    render: __vue_render__$l,
+    staticRenderFns: __vue_staticRenderFns__$l
+  }, __vue_inject_styles__$l, __vue_script__$k, __vue_scope_id__$l, __vue_is_functional_template__$l, __vue_module_identifier__$l, false, undefined, undefined, undefined);
 
   //
   //
@@ -5797,7 +5665,7 @@
   var __vue_script__$l = script$l;
   /* template */
 
-  var __vue_render__$n = function __vue_render__() {
+  var __vue_render__$m = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -5817,31 +5685,37 @@
     }, [_vm._t("default")], 2);
   };
 
-  var __vue_staticRenderFns__$n = [];
-  __vue_render__$n._withStripped = true;
+  var __vue_staticRenderFns__$m = [];
+  __vue_render__$m._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$n = undefined;
+  var __vue_inject_styles__$m = undefined;
   /* scoped */
 
-  var __vue_scope_id__$n = undefined;
+  var __vue_scope_id__$m = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$n = undefined;
+  var __vue_module_identifier__$m = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$n = false;
+  var __vue_is_functional_template__$m = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$n = normalizeComponent$1({
-    render: __vue_render__$n,
-    staticRenderFns: __vue_staticRenderFns__$n
-  }, __vue_inject_styles__$n, __vue_script__$l, __vue_scope_id__$n, __vue_is_functional_template__$n, __vue_module_identifier__$n, false, undefined, undefined, undefined);
+  var __vue_component__$m = normalizeComponent$1({
+    render: __vue_render__$m,
+    staticRenderFns: __vue_staticRenderFns__$m
+  }, __vue_inject_styles__$m, __vue_script__$l, __vue_scope_id__$m, __vue_is_functional_template__$m, __vue_module_identifier__$m, false, undefined, undefined, undefined);
 
+  //
+  //
+  //
+  //
+  //
+  //
   //
   //
   //
@@ -5926,7 +5800,7 @@
   var __vue_script__$m = script$m;
   /* template */
 
-  var __vue_render__$o = function __vue_render__() {
+  var __vue_render__$n = function __vue_render__() {
     var _vm = this;
 
     var _h = _vm.$createElement;
@@ -5952,30 +5826,30 @@
     })], 1)])]);
   };
 
-  var __vue_staticRenderFns__$o = [];
-  __vue_render__$o._withStripped = true;
+  var __vue_staticRenderFns__$n = [];
+  __vue_render__$n._withStripped = true;
   /* style */
 
-  var __vue_inject_styles__$o = undefined;
+  var __vue_inject_styles__$n = undefined;
   /* scoped */
 
-  var __vue_scope_id__$o = undefined;
+  var __vue_scope_id__$n = undefined;
   /* module identifier */
 
-  var __vue_module_identifier__$o = undefined;
+  var __vue_module_identifier__$n = undefined;
   /* functional template */
 
-  var __vue_is_functional_template__$o = false;
+  var __vue_is_functional_template__$n = false;
   /* style inject */
 
   /* style inject SSR */
 
   /* style inject shadow dom */
 
-  var __vue_component__$o = normalizeComponent$1({
-    render: __vue_render__$o,
-    staticRenderFns: __vue_staticRenderFns__$o
-  }, __vue_inject_styles__$o, __vue_script__$m, __vue_scope_id__$o, __vue_is_functional_template__$o, __vue_module_identifier__$o, false, undefined, undefined, undefined);
+  var __vue_component__$n = normalizeComponent$1({
+    render: __vue_render__$n,
+    staticRenderFns: __vue_staticRenderFns__$n
+  }, __vue_inject_styles__$n, __vue_script__$m, __vue_scope_id__$n, __vue_is_functional_template__$n, __vue_module_identifier__$n, false, undefined, undefined, undefined);
 
   var formHelpersMixin = {
     methods: {
@@ -6195,8 +6069,7 @@
       options.store.registerModule('alert', alertStore);
       options.store.registerModule('confirmation', confirmationStore);
       options.store.registerModule('dashboard', dashboardStore);
-      options.store.registerModule('loader', loaderStore);
-      options.store.registerModule('user', userStore); // Mixins
+      options.store.registerModule('loader', loaderStore); // Mixins
 
       Vue.mixin({
         computed: _objectSpread2({}, vuex.mapGetters({
@@ -6227,21 +6100,21 @@
     Vue.component('o-form-field', __vue_component__$5);
     Vue.component('o-meta-fields', __vue_component__$6); // Register layout components
 
-    Vue.component('o-dashboard-layout', __vue_component__$b);
-    Vue.component('o-side-nav-item', __vue_component__$c);
-    Vue.component('o-side-sub-nav-item', __vue_component__$d); // Register UI components
+    Vue.component('o-dashboard-layout', __vue_component__$a);
+    Vue.component('o-side-nav-item', __vue_component__$b);
+    Vue.component('o-side-sub-nav-item', __vue_component__$c); // Register UI components
 
-    Vue.component('o-alert', __vue_component__$e);
-    Vue.component('o-confirmation', __vue_component__$f);
-    Vue.component('o-dropdown', __vue_component__$g);
-    Vue.component('o-loader', __vue_component__$h);
-    Vue.component('o-modal', __vue_component__$i);
-    Vue.component('o-notification', __vue_component__$j);
-    Vue.component('o-pagination', __vue_component__$k);
-    Vue.component('o-search', __vue_component__$l);
-    Vue.component('o-tabs', __vue_component__$m);
-    Vue.component('o-tab', __vue_component__$n);
-    Vue.component('o-th-sort', __vue_component__$o);
+    Vue.component('o-alert', __vue_component__$d);
+    Vue.component('o-confirmation', __vue_component__$e);
+    Vue.component('o-dropdown', __vue_component__$f);
+    Vue.component('o-loader', __vue_component__$g);
+    Vue.component('o-modal', __vue_component__$h);
+    Vue.component('o-notification', __vue_component__$i);
+    Vue.component('o-pagination', __vue_component__$j);
+    Vue.component('o-search', __vue_component__$k);
+    Vue.component('o-tabs', __vue_component__$l);
+    Vue.component('o-tab', __vue_component__$m);
+    Vue.component('o-th-sort', __vue_component__$n);
   }
 
   exports.default = install$1;

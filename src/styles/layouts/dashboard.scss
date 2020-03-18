@@ -118,28 +118,3 @@
         padding-left: 22rem;
     }
 }
-
-.dashboard-enter-active,
-.dashboard-leave-active {
-    transition: opacity 300ms;
-}
-
-.dashboard-enter,
-.dashboard-leave-to {
-    opacity: 0;
-}
-
-.side-enter-active,
-.main-enter-active {
-    transition: all 500ms 300ms ease;
-}
-
-.side-enter {
-    opacity: 0;
-    transform: translateX(-10%);
-}
-
-.main-enter {
-    opacity: 0;
-    transform: translateY(-10%);
-}
