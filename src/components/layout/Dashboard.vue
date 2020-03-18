@@ -1,6 +1,6 @@
 <template>
     <div
-        class="dashboard"
+        class="dashboard bg-grey-200"
         :class="{ 'show-side': sideIsVisible }"
     >
         <div class="side bg-blue-700">

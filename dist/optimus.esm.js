@@ -4069,7 +4069,7 @@ var __vue_render__$a = function __vue_render__() {
   var _c = _vm._self._c || _h;
 
   return _c("div", {
-    staticClass: "dashboard",
+    staticClass: "dashboard bg-grey-200",
     class: {
       "show-side": _vm.sideIsVisible
     }
