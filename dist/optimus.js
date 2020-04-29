@@ -5883,7 +5883,7 @@
     data: function data() {
       return {
         errors: {},
-        scrollTop: true,
+        scrollToTop: true,
         isProcessing: false
       };
     },
@@ -5912,13 +5912,17 @@
             };
           }
 
-          if (_this.scrollTop) {
-            window.scrollTo(0, 0);
-          }
-
           _this.onError(error);
         }).finally(function () {
           _this.isProcessing = false;
+
+          if (_this.scrollToTop) {
+            _this.$el.scrollIntoView({
+              block: 'start',
+              inline: 'start',
+              behavior: 'smooth'
+            });
+          }
 
           _this.onFinally();
         });

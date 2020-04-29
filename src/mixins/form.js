@@ -35,7 +35,7 @@ export default {
     data() {
         return {
             errors: {},
-            scrollTop: true,
+            scrollToTop: true,
             isProcessing: false,
         };
     },
@@ -66,13 +66,17 @@ export default {
                     };
                 }
 
-                if (this.scrollTop) {
-                    window.scrollTo(0, 0);
-                }
-
                 this.onError(error);
             }).finally(() => {
                 this.isProcessing = false;
+
+                if (this.scrollToTop) {
+                    this.$el.scrollIntoView({
+                        block: 'start',
+                        inline: 'start',
+                        behavior: 'smooth',
+                    });
+                }
 
                 this.onFinally();
             });
